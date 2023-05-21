@@ -1,0 +1,34 @@
+{
+    "sourceFile": "1frontend/src/components/BigSidebar.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1683458666640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683459245978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,9 @@\n import Wrapper from '../assets/wrappers/BigSidebar';\n const BigSidebar = () => {\n-  return <h1>BigSidebar</h1>;\n+  return (\n+    <Wrapper>\n+      <h1>BigSidebar</h1>;\n+    </Wrapper>\n+  );\n };\n export default BigSidebar;\n"
+                },
+                {
+                    "date": 1683496755394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,21 @@\n import Wrapper from '../assets/wrappers/BigSidebar';\n+import { useAppContext } from '../context/appContext';\n+import { Logo } from '../components';\n+import NavLinks from './NavLinks';\n+\n const BigSidebar = () => {\n+  const {showSidebar} = useAppContext()\n   return (\n     <Wrapper>\n-      <h1>BigSidebar</h1>;\n+      <div className={ showSidebar ? 'sidebar-container show-sidebar' : 'sidebar-container' }>\n+        <div className=\"content\">\n+          <header>\n+            <Logo/>\n+          </header>\n+          <NavLinks/>\n+      </div>\n+      </div>;\n     </Wrapper>\n   );\n };\n export default BigSidebar;\n"
+                },
+                {
+                    "date": 1683496929871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { Logo } from '../components';\n import NavLinks from './NavLinks';\n \n const BigSidebar = () => {\n-  const { showSidebar } = useAppContext();\n+  const { showSidebar, toggleSidebar } = useAppContext();\n   return (\n     <Wrapper>\n       <div\n         className={\n@@ -15,9 +15,9 @@\n         <div className='content'>\n           <header>\n             <Logo />\n           </header>\n-          <NavLinks />\n+          <NavLinks  toggleSidebar={toggleSidebar}/>\n         </div>\n       </div>\n       ;\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683497279061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { Logo } from '../components';\n import NavLinks from './NavLinks';\n \n const BigSidebar = () => {\n-  const { showSidebar, toggleSidebar } = useAppContext();\n+  const { showSidebar  } = useAppContext();\n   return (\n     <Wrapper>\n       <div\n         className={\n@@ -15,9 +15,9 @@\n         <div className='content'>\n           <header>\n             <Logo />\n           </header>\n-          <NavLinks toggleSidebar={toggleSidebar} />\n+          <NavLinks  />\n         </div>\n       </div>\n       ;\n     </Wrapper>\n"
+                }
+            ],
+            "date": 1683458666640,
+            "name": "Commit-0",
+            "content": "import Wrapper from '../assets/wrappers/BigSidebar';\nconst BigSidebar = () => {\n  return <h1>BigSidebar</h1>;\n};\nexport default BigSidebar;\n"
+        }
+    ]
+}

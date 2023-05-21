@@ -1,0 +1,86 @@
+{
+    "sourceFile": "1frontend/src/components/JobsContainer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1683975166865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683975220613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const JobsContainer = () => {\n-  return <div>JobsContainer</div>;\n+  return <h1>JobsContainer</h1>;\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683986888349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,10 @@\n+import { useAppContext } from '../context/appContext';\n+import { useEffect } from 'react';\n+import Loading from './Loading';\n+import Job from './Job';\n+import Wrapper from '../assets/wrappers/JobsContainer';\n+\n const JobsContainer = () => {\n   return <h1>JobsContainer</h1>;\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987040251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,12 @@\n import Job from './Job';\n import Wrapper from '../assets/wrappers/JobsContainer';\n \n const JobsContainer = () => {\n+  const { getJobs, jobs, isLoading, page, totalJobs } = useAppContext();\n+\n+  useEffect(() => {\n+    getJobs();\n+  }, []);\n   return <h1>JobsContainer</h1>;\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987175732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,11 @@\n \n   useEffect(() => {\n     getJobs();\n   }, []);\n-  return <h1>JobsContainer</h1>;\n+  return (\n+    <div>\n+      <Loading />\n+    </div>\n+  );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987427427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     getJobs();\n   }, []);\n   return (\n     <div>\n-      <Loading />\n+      <Loading center />\n     </div>\n   );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987517405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,10 @@\n \n   useEffect(() => {\n     getJobs();\n   }, []);\n-  return (\n-    <div>\n-      <Loading center />\n-    </div>\n-  );\n+  if (isLoading) {\n+    return <Loading center />;\n+  }\n+  return <div></div>;\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987643190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,7 +12,12 @@\n   }, []);\n   if (isLoading) {\n     return <Loading center />;\n   }\n+  if (jobs.length === 0) {\n+    <Wrapper>\n+      <h2>no jobs to display at this time</h2>\n+    </Wrapper>;\n+  }\n   return <div></div>;\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987739476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,13 @@\n     <Wrapper>\n       <h2>no jobs to display at this time</h2>\n     </Wrapper>;\n   }\n-  return <div></div>;\n+  return (\n+    <Wrapper>\n+      <h5>\n+        {totalJobs} job {jobs.length > 1 && 's'}\n+      </h5>\n+    </Wrapper>\n+  );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987755299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n   }\n   return (\n     <Wrapper>\n       <h5>\n-        {totalJobs} job {jobs.length > 1 && 's'}\n+        {totalJobs} job {jobs.length > 1 && 's'} found\n       </h5>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683987764798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n     </Wrapper>;\n   }\n   return (\n     <Wrapper>\n-      <h5>\n+      <h3>\n         {totalJobs} job {jobs.length > 1 && 's'} found\n-      </h5>\n+      </h3>\n     </Wrapper>\n   );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987773159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n     </Wrapper>;\n   }\n   return (\n     <Wrapper>\n-      <h3>\n+      <h4>\n         {totalJobs} job {jobs.length > 1 && 's'} found\n-      </h3>\n+      </h4>\n     </Wrapper>\n   );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987880579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,13 @@\n     <Wrapper>\n       <h4>\n         {totalJobs} job {jobs.length > 1 && 's'} found\n       </h4>\n+      <div className='jobs'>\n+        {jobs.map((job) => {\n+          return <Job key={job._id} {...job} />;\n+        })}\n+      </div>\n     </Wrapper>\n   );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683987921428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n         {jobs.map((job) => {\n           return <Job key={job._id} {...job} />;\n         })}\n       </div>\n+      {/* pagination buttons */}\n     </Wrapper>\n   );\n };\n export default JobsContainer;\n"
+                },
+                {
+                    "date": 1683989431944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n   }\n   return (\n     <Wrapper>\n       <h4>\n-        {totalJobs} job {jobs.length > 1 && 's'} found\n+        {totalJobs} job{jobs.length > 1 && 's'} found\n       </h4>\n       <div className='jobs'>\n         {jobs.map((job) => {\n           return <Job key={job._id} {...job} />;\n"
+                },
+                {
+                    "date": 1684464237399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,11 @@\n   if (isLoading) {\n     return <Loading center />;\n   }\n   if (jobs.length === 0) {\n-    <Wrapper>\n+    return (<Wrapper>\n       <h2>no jobs to display at this time</h2>\n-    </Wrapper>;\n+    </Wrapper>);\n   }\n   return (\n     <Wrapper>\n       <h4>\n"
+                },
+                {
+                    "date": 1684464318582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   }\n   if (jobs.length === 0) {\n     return (\n       <Wrapper>\n-        <h2>no jobs to display at this time</h2>\n+        <h2>no jobs to display at this time...</h2>\n       </Wrapper>\n     );\n   }\n   return (\n"
+                },
+                {
+                    "date": 1684469314594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import Job from './Job';\n import Wrapper from '../assets/wrappers/JobsContainer';\n \n const JobsContainer = () => {\n-  const { getJobs, jobs, isLoading, page, totalJobs } = useAppContext();\n+  const { getJobs, jobs, isLoading, page, totalJobs, search, searchStatus, searchType, sort  } = useAppContext();\n \n   useEffect(() => {\n     getJobs();\n   }, []);\n"
+                }
+            ],
+            "date": 1683975166865,
+            "name": "Commit-0",
+            "content": "const JobsContainer = () => {\n  return <div>JobsContainer</div>;\n};\nexport default JobsContainer;\n"
+        }
+    ]
+}

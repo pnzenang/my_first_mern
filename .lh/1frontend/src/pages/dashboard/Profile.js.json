@@ -1,0 +1,94 @@
+{
+    "sourceFile": "1frontend/src/pages/dashboard/Profile.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1683459782002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683728669189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,10 @@\n+import { useState } from 'react';\n+import { FormRow, Alert } from '../../components';\n+import { useAppContext } from '../../context/appContext';\n+import Wrapper from '../../assets/wrappers/DashboardFormPage';\n const Profile = () => {\n+  const { user, showAlert, displayAlert, updateUser, isLoading } =\n+    useAppContext();\n   return <h1>Profile</h1>;\n };\n export default Profile;\n"
+                },
+                {
+                    "date": 1683728842211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,13 @@\n import Wrapper from '../../assets/wrappers/DashboardFormPage';\n const Profile = () => {\n   const { user, showAlert, displayAlert, updateUser, isLoading } =\n     useAppContext();\n+\n+  const [name, setName] = useState(user?.name);\n+  const [email, setEmail] = useState(user?.email);\n+  const [lastName, setLastName] = useState(user?.lastName);\n+  const [location, setLocation] = useState(user?.location);\n+\n   return <h1>Profile</h1>;\n };\n export default Profile;\n"
+                },
+                {
+                    "date": 1683728936654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,12 @@\n   const [email, setEmail] = useState(user?.email);\n   const [lastName, setLastName] = useState(user?.lastName);\n   const [location, setLocation] = useState(user?.location);\n \n+  const handleSubmit = (e) => {\n+    e.preventDefault();\n+    console.log('update User');\n+  };\n+\n   return <h1>Profile</h1>;\n };\n export default Profile;\n"
+                },
+                {
+                    "date": 1683729174259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,11 @@\n   const handleSubmit = (e) => {\n     e.preventDefault();\n     console.log('update User');\n   };\n-\n-  return <h1>Profile</h1>;\n+  return (\n+    <form className='form' onSubmit={handleSubmit}>\n+      <h3>profile</h3>\n+    </form>\n+  );\n };\n export default Profile;\n"
+                },
+                {
+                    "date": 1683729221836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n   };\n   return (\n     <form className='form' onSubmit={handleSubmit}>\n       <h3>profile</h3>\n+      {showAlert && <Alert />}\n     </form>\n   );\n };\n export default Profile;\n"
+                },
+                {
+                    "date": 1683729285995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,14 @@\n     e.preventDefault();\n     console.log('update User');\n   };\n   return (\n-    <form className='form' onSubmit={handleSubmit}>\n-      <h3>profile</h3>\n-      {showAlert && <Alert />}\n-    </form>\n+    <Wrapper>\n+      <form className='form' onSubmit={handleSubmit}>\n+        <h3>profile</h3>\n+        {showAlert && <Alert />}\n+        <div className='form center'></div>\n+      </form>\n+    </Wrapper>\n   );\n };\n export default Profile;\n"
+                },
+                {
+                    "date": 1683729561067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,16 @@\n     <Wrapper>\n       <form className='form' onSubmit={handleSubmit}>\n         <h3>profile</h3>\n         {showAlert && <Alert />}\n-        <div className='form center'></div>\n+        <div className='form center'>\n+          <FormRow\n+            type='text'\n+            name='name'\n+            value={name}\n+            handleChange={(e) => setName(e.target.value)}\n+          />\n+        </div>\n       </form>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683729672107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,14 @@\n             name='name'\n             value={name}\n             handleChange={(e) => setName(e.target.value)}\n           />\n+          <FormRow\n+            type='text'\n+            name='lastName'\n+            value={lastName}\n+            handleChange={(e) => setLastName(e.target.value)}\n+          />\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683772824351,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     <Wrapper>\n       <form className='form' onSubmit={handleSubmit}>\n         <h3>profile</h3>\n         {showAlert && <Alert />}\n-        <div className='form center'>\n+        <div className='form-center'>\n           <FormRow\n             type='text'\n             name='name'\n             value={name}\n@@ -32,8 +32,14 @@\n             name='lastName'\n             value={lastName}\n             handleChange={(e) => setLastName(e.target.value)}\n           />\n+          <FormRow\n+            type='text'\n+            name='lastName'\n+            value={lastName}\n+            handleChange={(e) => setLastName(e.target.value)}\n+          />\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683772968147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n             handleChange={(e) => setName(e.target.value)}\n           />\n           <FormRow\n             type='text'\n+            labelText='last name'\n             name='lastName'\n             value={lastName}\n             handleChange={(e) => setLastName(e.target.value)}\n           />\n"
+                },
+                {
+                    "date": 1683773368733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,11 +34,11 @@\n             value={lastName}\n             handleChange={(e) => setLastName(e.target.value)}\n           />\n           <FormRow\n-            type='text'\n-            name='lastName'\n-            value={lastName}\n+            type='email'\n+            name='email'\n+            value={email}\n             handleChange={(e) => setLastName(e.target.value)}\n           />\n         </div>\n       </form>\n"
+                },
+                {
+                    "date": 1683773378241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n           <FormRow\n             type='email'\n             name='email'\n             value={email}\n-            handleChange={(e) => setLastName(e.target.value)}\n+            handleChange={(e) => setEmail(e.target.value)}\n           />\n         </div>\n       </form>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683773713878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,14 @@\n             name='email'\n             value={email}\n             handleChange={(e) => setEmail(e.target.value)}\n           />\n+          <FormRow\n+            type='text'\n+            name='location'\n+            value={location}\n+            handleChange={(e) => setLocation(e.target.value)}\n+          />\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683773782919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,12 @@\n             name='location'\n             value={location}\n             handleChange={(e) => setLocation(e.target.value)}\n           />\n+          <button className='btn btn-block' type='submit'>\n+            {' '}\n+            submit\n+          </button>\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683773832887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,10 +45,9 @@\n             name='location'\n             value={location}\n             handleChange={(e) => setLocation(e.target.value)}\n           />\n-          <button className='btn btn-block' type='submit'>\n-            {' '}\n+          <button className='btn btn-block' type='submit' disabled={isLoading}>\n             submit\n           </button>\n         </div>\n       </form>\n"
+                },
+                {
+                    "date": 1683773911187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n             value={location}\n             handleChange={(e) => setLocation(e.target.value)}\n           />\n           <button className='btn btn-block' type='submit' disabled={isLoading}>\n-            submit\n+            {isLoading ? 'please wait...' : 'save change'}\n           </button>\n         </div>\n       </form>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683774098862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,13 @@\n   const [location, setLocation] = useState(user?.location);\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n-    console.log('update User');\n+    if (!name || !email || !lastName || !location) {\n+      displayAlert();\n+      return;\n+    }\n+    updateUser({ name, email, lastName, location });\n   };\n   return (\n     <Wrapper>\n       <form className='form' onSubmit={handleSubmit}>\n"
+                },
+                {
+                    "date": 1683775327660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n     if (!name || !email || !lastName || !location) {\n-      displayAlert();\n+      // displayAlert();\n       return;\n     }\n     updateUser({ name, email, lastName, location });\n   };\n"
+                },
+                {
+                    "date": 1683775975607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n     if (!name || !email || !lastName || !location) {\n-      // displayAlert();\n+      displayAlert();\n       return;\n     }\n     updateUser({ name, email, lastName, location });\n   };\n"
+                }
+            ],
+            "date": 1683459782002,
+            "name": "Commit-0",
+            "content": "const Profile = () => {\n  return <h1>Profile</h1>;\n};\nexport default Profile;\n"
+        }
+    ]
+}

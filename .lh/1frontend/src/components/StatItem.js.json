@@ -1,0 +1,42 @@
+{
+    "sourceFile": "1frontend/src/components/StatItem.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1684295099627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684295318086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n       <header>\n         <span className='count'>{count}</span>\n         <span className='icon'>{icon}</span>\n       </header>\n-      <h5 className='count'>{title}</h5>\n+      <h6 className='count'>{title}</h6>\n     </Wrapper>\n   );\n };\n export default StatItem;\n"
+                },
+                {
+                    "date": 1684295327923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n       <header>\n         <span className='count'>{count}</span>\n         <span className='icon'>{icon}</span>\n       </header>\n-      <h6 className='count'>{title}</h6>\n+      <h5 className='count'>{title}</h5>\n     </Wrapper>\n   );\n };\n export default StatItem;\n"
+                },
+                {
+                    "date": 1684295455972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Wrapper from '../assets/wrappers/StatItem';\n const StatItem = ({ count, title, icon, color, bcg }) => {\n   return (\n-    <Wrapper>\n+    <Wrapper color={color} bcg = {bcg}>\n       <header>\n         <span className='count'>{count}</span>\n         <span className='icon'>{icon}</span>\n       </header>\n"
+                },
+                {
+                    "date": 1684295540750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n       <header>\n         <span className='count'>{count}</span>\n         <span className='icon'>{icon}</span>\n       </header>\n-      <h5 className='count'>{title}</h5>\n+      <h5 className='title'>{title}</h5>\n     </Wrapper>\n   );\n };\n export default StatItem;\n"
+                },
+                {
+                    "date": 1684295591638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,7 @@\n         <span className='count'>{count}</span>\n         <span className='icon'>{icon}</span>\n       </header>\n       <h5 className='title'>{title}</h5>\n-    </Wrapper>\n   );\n };\n export default StatItem;\n"
+                },
+                {
+                    "date": 1684295612591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n       <header>\n         <span className='count'>{count}</span>\n         <span className='icon'>{icon}</span>\n       </header>\n-      <h5 className='title'>{title}</h5>\n+      <h5 className='title'>{ title }</h5>\n+      </Wrapper>\n   );\n };\n export default StatItem;\n"
+                }
+            ],
+            "date": 1684295099627,
+            "name": "Commit-0",
+            "content": "import Wrapper from '../assets/wrappers/StatItem';\nconst StatItem = ({ count, title, icon, color, bcg }) => {\n  return (\n    <Wrapper>\n      <header>\n        <span className='count'>{count}</span>\n        <span className='icon'>{icon}</span>\n      </header>\n      <h5 className='count'>{title}</h5>\n    </Wrapper>\n  );\n};\nexport default StatItem;\n"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "utils/attachedCookies.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1684643544559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684643627779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const attachedCookies = () => {\n+const attachedCookies = ({res, token}) => {\n   const oneDay = 1000 * 60 * 60 * 24;\n \n   res.cookie('token', token, {\n     httpOnly: true,\n"
+                },
+                {
+                    "date": 1684646433207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   const oneDay = 1000 * 60 * 60 * 24;\n \n   res.cookie('token', token, {\n     httpOnly: true,\n-    expires: new Date(Date.now() + oneDay),\n+    expires: new Date(Date.now() + 5000),\n     secure: process.env.NODE_ENV === 'production'\n   });\n };\n export default attachedCookies;\n"
+                }
+            ],
+            "date": 1684643544559,
+            "name": "Commit-0",
+            "content": "const attachedCookies = () => {\n  const oneDay = 1000 * 60 * 60 * 24;\n  \n   res.cookie('token', token, {\n     httpOnly: true,\n     expires: new Date(Date.now() + oneDay),\n     secure: process.env.NODE_ENV === 'production'\n   });\n}\nexport default attachedCookies"
+        }
+    ]
+}

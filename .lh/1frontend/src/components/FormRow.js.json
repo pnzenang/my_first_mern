@@ -1,0 +1,18 @@
+{
+    "sourceFile": "1frontend/src/components/FormRow.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1683773627609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1683773627609,
+            "name": "Commit-0",
+            "content": "const FormRow = ({ type, name, value, handleChange, labelText }) => {\n  return (\n    <div className='form-row'>\n      <label htmlFor='name' className='form-label'>\n        {labelText || name}\n      </label>\n      <input\n        type={type}\n        name={name}\n        className='form-input'\n        value={value}\n        onChange={handleChange}\n      />\n    </div>\n  );\n};\nexport default FormRow;\n"
+        }
+    ]
+}

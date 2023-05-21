@@ -1,0 +1,190 @@
+{
+    "sourceFile": "1frontend/src/pages/dashboard/AddJob.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 43,
+            "patches": [
+                {
+                    "date": 1683459722648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683945447158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,8 @@\n+import { Logo, FormRow, Alert } from '../components';\n+import Wrapper from '../assets/wrappers/RegisterPage';\n+import { useAppContext } from '../context/appContext';\n+\n const AddJob = () => {\n   return <h1>Add Job Page</h1>;\n };\n export default AddJob;\n"
+                },
+                {
+                    "date": 1683945528765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n-import { Logo, FormRow, Alert } from '../components';\n-import Wrapper from '../assets/wrappers/RegisterPage';\n-import { useAppContext } from '../context/appContext';\n+import { FormRow, Alert } from '../../components';\n+import { useAppContext } from '../../context/appContext';\n+import Wrapper from '../../assets/wrappers/DashboardFormPage';\n \n const AddJob = () => {\n   return <h1>Add Job Page</h1>;\n };\n"
+                },
+                {
+                    "date": 1683945606307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,9 @@\n import { useAppContext } from '../../context/appContext';\n import Wrapper from '../../assets/wrappers/DashboardFormPage';\n \n const AddJob = () => {\n+  const { showAlert, displayAlert, position, company, jobLocation } =\n+    useAppContext();\n   return <h1>Add Job Page</h1>;\n };\n export default AddJob;\n"
+                },
+                {
+                    "date": 1683945661852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,18 @@\n import { useAppContext } from '../../context/appContext';\n import Wrapper from '../../assets/wrappers/DashboardFormPage';\n \n const AddJob = () => {\n-  const { showAlert, displayAlert, position, company, jobLocation } =\n-    useAppContext();\n+  const {\n+    showAlert,\n+    displayAlert,\n+    position,\n+    company,\n+    jobLocation,\n+    jobType,\n+    jobTypeOptions,\n+    status,\n+    statusOptions\n+  } = useAppContext();\n   return <h1>Add Job Page</h1>;\n };\n export default AddJob;\n"
+                },
+                {
+                    "date": 1683945930228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import Wrapper from '../../assets/wrappers/DashboardFormPage';\n \n const AddJob = () => {\n   const {\n+    isEditing,\n     showAlert,\n     displayAlert,\n     position,\n     company,\n@@ -13,7 +14,13 @@\n     jobTypeOptions,\n     status,\n     statusOptions\n   } = useAppContext();\n-  return <h1>Add Job Page</h1>;\n+  return (\n+    <Wrapper>\n+      <form className='form'>\n+        <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n+      </form>\n+    </Wrapper>\n+  );\n };\n export default AddJob;\n"
+                },
+                {
+                    "date": 1683945988671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n   return (\n     <Wrapper>\n       <form className='form'>\n         <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n+        {showAlert && <Alert />}\n       </form>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683946117405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,11 @@\n     <Wrapper>\n       <form className='form'>\n         <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n         {showAlert && <Alert />}\n+        <div className='form-center'>\n+          <FormRow type='text' name='position' />\n+        </div>\n       </form>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683946153743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       <form className='form'>\n         <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n         {showAlert && <Alert />}\n         <div className='form-center'>\n-          <FormRow type='text' name='position' />\n+          <FormRow type='text' name='position' value={position} />\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683946317436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,15 @@\n     jobTypeOptions,\n     status,\n     statusOptions\n   } = useAppContext();\n+\n+  const handleJobInput = (e) => {\n+    const name = e.target.name;\n+    const value = e.target.value;\n+    console.log(`${name}`);\n+  };\n+\n   return (\n     <Wrapper>\n       <form className='form'>\n         <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n"
+                },
+                {
+                    "date": 1683946348784,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \n   const handleJobInput = (e) => {\n     const name = e.target.name;\n     const value = e.target.value;\n-    console.log(`${name}`);\n+    console.log(`${name}:${value}`);\n   };\n \n   return (\n     <Wrapper>\n"
+                },
+                {
+                    "date": 1683946498487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,14 @@\n       <form className='form'>\n         <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n         {showAlert && <Alert />}\n         <div className='form-center'>\n-          <FormRow type='text' name='position' value={position} />\n+          <FormRow\n+            type='text'\n+            name='position'\n+            value={position}\n+            onChange={handleJobInput}\n+          />\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683946631780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n       <form className='form'>\n         <h3>{isEditing ? 'edit job' : 'add job'}</h3>\n         {showAlert && <Alert />}\n         <div className='form-center'>\n+          {/* position */}\n           <FormRow\n             type='text'\n             name='position'\n             value={position}\n"
+                },
+                {
+                    "date": 1683946740053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,22 @@\n             name='position'\n             value={position}\n             onChange={handleJobInput}\n           />\n+          {/* company */}\n+          <FormRow\n+            type='text'\n+            name='company'\n+            value={company}\n+            onChange={handleJobInput}\n+          />\n+          {/* position */}\n+          <FormRow\n+            type='text'\n+            name='position'\n+            value={position}\n+            onChange={handleJobInput}\n+          />\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683946760991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n             name='company'\n             value={company}\n             onChange={handleJobInput}\n           />\n-          {/* position */}\n+          {/*location */}\n           <FormRow\n             type='text'\n             name='position'\n             value={position}\n"
+                },
+                {
+                    "date": 1683946794559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,10 +44,10 @@\n           />\n           {/*location */}\n           <FormRow\n             type='text'\n-            name='position'\n-            value={position}\n+            name='jobLocation'\n+            value={jobLocation}\n             onChange={handleJobInput}\n           />\n         </div>\n       </form>\n"
+                },
+                {
+                    "date": 1683946909151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,9 @@\n           />\n           {/*location */}\n           <FormRow\n             type='text'\n+            labelText='job location'\n             name='jobLocation'\n             value={jobLocation}\n             onChange={handleJobInput}\n           />\n"
+                },
+                {
+                    "date": 1683947028639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,24 +32,24 @@\n           <FormRow\n             type='text'\n             name='position'\n             value={position}\n-            onChange={handleJobInput}\n+            handleChange={handleJobInput}\n           />\n           {/* company */}\n           <FormRow\n             type='text'\n             name='company'\n             value={company}\n-            onChange={handleJobInput}\n+            handleChange={handleJobInput}\n           />\n           {/*location */}\n           <FormRow\n             type='text'\n             labelText='job location'\n             name='jobLocation'\n             value={jobLocation}\n-            onChange={handleJobInput}\n+            handleChange={handleJobInput}\n           />\n         </div>\n       </form>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683947341700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,8 +49,13 @@\n             name='jobLocation'\n             value={jobLocation}\n             handleChange={handleJobInput}\n           />\n+          {/* job type */}\n+          {/* job status */}\n+          <div className='btn-container'>\n+            <button className='btn btn-block submit-btn'></button>\n+          </div>\n         </div>\n       </form>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683947386922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n           />\n           {/* job type */}\n           {/* job status */}\n           <div className='btn-container'>\n-            <button className='btn btn-block submit-btn'></button>\n+            <button className='btn btn-block submit-btn'>submit</button>\n           </div>\n         </div>\n       </form>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683947436290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,12 @@\n     status,\n     statusOptions\n   } = useAppContext();\n \n+  const handleSubmit = (e) => {\n+    e.preventDefault();\n+  };\n+\n   const handleJobInput = (e) => {\n     const name = e.target.name;\n     const value = e.target.value;\n     console.log(`${name}:${value}`);\n"
+                },
+                {
+                    "date": 1683947583108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,12 @@\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n+    if (!position || !company || !jobLocation) {\n+      displayAlert();\n+      return;\n+    }\n   };\n \n   const handleJobInput = (e) => {\n     const name = e.target.name;\n"
+                },
+                {
+                    "date": 1683947605054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     if (!position || !company || !jobLocation) {\n       displayAlert();\n       return;\n     }\n+    console.log();\n   };\n \n   const handleJobInput = (e) => {\n     const name = e.target.name;\n"
+                },
+                {
+                    "date": 1683947651043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,11 @@\n           />\n           {/* job type */}\n           {/* job status */}\n           <div className='btn-container'>\n-            <button className='btn btn-block submit-btn'>submit</button>\n+            <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n+              submit\n+            </button>\n           </div>\n         </div>\n       </form>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683947876013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,8 +59,13 @@\n             value={jobLocation}\n             handleChange={handleJobInput}\n           />\n           {/* job type */}\n+          <div className='form-row'>\n+            <label htmlFor='jobType' className='form-label'>\n+              job type\n+            </label>\n+          </div>\n           {/* job status */}\n           <div className='btn-container'>\n             <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n               submit\n"
+                },
+                {
+                    "date": 1683948069880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,8 +63,13 @@\n           <div className='form-row'>\n             <label htmlFor='jobType' className='form-label'>\n               job type\n             </label>\n+            <select\n+              name='jobType'\n+              value={jobType}\n+              className='form-select'\n+            ></select>\n           </div>\n           {/* job status */}\n           <div className='btn-container'>\n             <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n"
+                },
+                {
+                    "date": 1683948274710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,13 +63,17 @@\n           <div className='form-row'>\n             <label htmlFor='jobType' className='form-label'>\n               job type\n             </label>\n-            <select\n-              name='jobType'\n-              value={jobType}\n-              className='form-select'\n-            ></select>\n+            <select name='jobType' value={jobType} className='form-select'>\n+              {jobTypeOptions.map((itemValue, index) => {\n+                return (\n+                  <option key={index} value={itemValue}>\n+                    {itemValue}\n+                  </option>\n+                );\n+              })}\n+            </select>\n           </div>\n           {/* job status */}\n           <div className='btn-container'>\n             <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n"
+                },
+                {
+                    "date": 1683948475583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,14 @@\n           <div className='form-row'>\n             <label htmlFor='jobType' className='form-label'>\n               job type\n             </label>\n-            <select name='jobType' value={jobType} className='form-select'>\n+            <select\n+              name='jobType'\n+              value={jobType}\n+              onChange={handleJobInput}\n+              className='form-select'\n+            >\n               {jobTypeOptions.map((itemValue, index) => {\n                 return (\n                   <option key={index} value={itemValue}>\n                     {itemValue}\n"
+                },
+                {
+                    "date": 1683964963490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { FormRow, Alert } from '../../components';\n+import { FormRow, Alert, FormRowSelect } from '../../components';\n import { useAppContext } from '../../context/appContext';\n import Wrapper from '../../assets/wrappers/DashboardFormPage';\n \n const AddJob = () => {\n@@ -59,27 +59,15 @@\n             value={jobLocation}\n             handleChange={handleJobInput}\n           />\n           {/* job type */}\n-          <div className='form-row'>\n-            <label htmlFor='jobType' className='form-label'>\n-              job type\n-            </label>\n-            <select\n-              name='jobType'\n-              value={jobType}\n-              onChange={handleJobInput}\n-              className='form-select'\n-            >\n-              {jobTypeOptions.map((itemValue, index) => {\n-                return (\n-                  <option key={index} value={itemValue}>\n-                    {itemValue}\n-                  </option>\n-                );\n-              })}\n-            </select>\n-          </div>\n+          <FormRowSelect\n+            name='status'\n+            value={status}\n+            handleChange={handleJobInput}\n+            list={statusOptions}\n+          />\n+\n           {/* job status */}\n           <div className='btn-container'>\n             <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n               submit\n"
+                },
+                {
+                    "date": 1683965516925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,8 +67,15 @@\n             list={statusOptions}\n           />\n \n           {/* job status */}\n+          <FormRowSelect\n+            name='jobType'\n+            labelText='job type'\n+            value={jobType}\n+            handleChange={handleJobInput}\n+            list={jobTypeOptions}\n+          />\n           <div className='btn-container'>\n             <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n               submit\n             </button>\n"
+                },
+                {
+                    "date": 1683966380159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \n   const handleJobInput = (e) => {\n     const name = e.target.name;\n     const value = e.target.value;\n-    console.log(`${name}:${value}`);\n+    handleChange({ name, value });\n   };\n \n   return (\n     <Wrapper>\n"
+                },
+                {
+                    "date": 1683966418231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n     jobLocation,\n     jobType,\n     jobTypeOptions,\n     status,\n-    statusOptions\n+    statusOptions,\n+    handleChange\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n"
+                },
+                {
+                    "date": 1683968038239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n     jobType,\n     jobTypeOptions,\n     status,\n     statusOptions,\n-    handleChange\n+    handleChange,\n+    clearValues\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n"
+                },
+                {
+                    "date": 1683968198655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,8 +80,16 @@\n           <div className='btn-container'>\n             <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n               submit\n             </button>\n+            <button\n+              className='btn btn-block clear-btn'\n+              onClick={(e) => {\n+                e.preventDefault(), clearValues();\n+              }}\n+            >\n+              clear\n+            </button>\n           </div>\n         </div>\n       </form>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683968579385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,10 @@\n             </button>\n             <button\n               className='btn btn-block clear-btn'\n               onClick={(e) => {\n-                e.preventDefault(), clearValues();\n+                e.preventDefault();\n+                clearValues();\n               }}\n             >\n               clear\n             </button>\n"
+                },
+                {
+                    "date": 1683969596874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import Wrapper from '../../assets/wrappers/DashboardFormPage';\n \n const AddJob = () => {\n   const {\n+    isLoading,\n     isEditing,\n     showAlert,\n     displayAlert,\n     position,\n@@ -77,9 +78,13 @@\n             handleChange={handleJobInput}\n             list={jobTypeOptions}\n           />\n           <div className='btn-container'>\n-            <button className='btn btn-block submit-btn' onClick={handleSubmit}>\n+            <button\n+              className='btn btn-block submit-btn'\n+              onClick={handleSubmit}\n+              disabled={isLoading}\n+            >\n               submit\n             </button>\n             <button\n               className='btn btn-block clear-btn'\n"
+                },
+                {
+                    "date": 1683970306459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,10 @@\n     jobTypeOptions,\n     status,\n     statusOptions,\n     handleChange,\n-    clearValues\n+    clearValues,\n+    createJob\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n"
+                },
+                {
+                    "date": 1683970419159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,13 +21,15 @@\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n-    if (!position || !company || !jobLocation) {\n-      displayAlert();\n-      return;\n+    // if (!position || !company || !jobLocation) {\n+    //   displayAlert();\n+    //   return;\n+    // }\n+    if (isEditing) {\n     }\n-    console.log();\n+    console.log('create job');\n   };\n \n   const handleJobInput = (e) => {\n     const name = e.target.name;\n"
+                },
+                {
+                    "date": 1683970447793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     //   displayAlert();\n     //   return;\n     // }\n     if (isEditing) {\n+      //eventually\n     }\n     console.log('create job');\n   };\n \n"
+                },
+                {
+                    "date": 1683970476758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     // }\n     if (isEditing) {\n       //eventually\n     }\n-    console.log('create job');\n+    createJob();\n   };\n \n   const handleJobInput = (e) => {\n     const name = e.target.name;\n"
+                },
+                {
+                    "date": 1683971061680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,12 @@\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n-    // if (!position || !company || !jobLocation) {\n-    //   displayAlert();\n-    //   return;\n-    // }\n+    if (!position || !company || !jobLocation) {\n+      displayAlert();\n+      return;\n+    }\n     if (isEditing) {\n       //eventually\n     }\n     createJob();\n"
+                },
+                {
+                    "date": 1684022420292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,10 @@\n     status,\n     statusOptions,\n     handleChange,\n     clearValues,\n-    createJob\n+    createJob,\n+    editJob\n   } = useAppContext();\n \n   const handleSubmit = (e) => {\n     e.preventDefault();\n"
+                },
+                {
+                    "date": 1684022541442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n       displayAlert();\n       return;\n     }\n     if (isEditing) {\n-      //eventually\n+      editJob();\n     }\n     createJob();\n   };\n \n"
+                },
+                {
+                    "date": 1684037572482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n       return;\n     }\n     if (isEditing) {\n       editJob();\n+      return;\n     }\n     createJob();\n   };\n \n"
+                }
+            ],
+            "date": 1683459722648,
+            "name": "Commit-0",
+            "content": "const AddJob = () => {\n  return <h1>Add Job Page</h1>;\n};\nexport default AddJob;\n"
+        }
+    ]
+}

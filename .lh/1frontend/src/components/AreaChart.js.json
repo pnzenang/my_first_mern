@@ -1,0 +1,22 @@
+{
+    "sourceFile": "1frontend/src/components/AreaChart.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1684374405374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684374442722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const AreaChart = () => {\n-  return <div>AreaChart</div>;\n+  return <h2>Area Chart</h2>;\n };\n export default AreaChart;\n"
+                }
+            ],
+            "date": 1684374405374,
+            "name": "Commit-0",
+            "content": "const AreaChart = () => {\n  return <div>AreaChart</div>;\n};\nexport default AreaChart;\n"
+        }
+    ]
+}

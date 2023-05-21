@@ -1,0 +1,22 @@
+{
+    "sourceFile": "1frontend/src/components/JobInfo.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1684006757254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684006799401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import Wrapper from '../assets/wrappers/JobInfo';\n \n-const JobInfo = () => {\n+const JobInfo = ({ icon, text }) => {\n   return (\n     <Wrapper>\n       <span className='icon'>{icon}</span>\n+      <span className='text'>{text}</span>\n     </Wrapper>\n   );\n };\n export default JobInfo;\n"
+                }
+            ],
+            "date": 1684006757254,
+            "name": "Commit-0",
+            "content": "import Wrapper from '../assets/wrappers/JobInfo';\n\nconst JobInfo = () => {\n  return (\n    <Wrapper>\n      <span className='icon'>{icon}</span>\n    </Wrapper>\n  );\n};\nexport default JobInfo;\n"
+        }
+    ]
+}

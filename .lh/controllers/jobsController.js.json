@@ -1,0 +1,102 @@
+{
+    "sourceFile": "controllers/jobsController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 21,
+            "patches": [
+                {
+                    "date": 1683881217921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683881336724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,12 @@\n import { StatusCodes } from 'http-status-codes';\n import { BadRequestError, UnAuthenticatedError } from '../errors/index.js';\n \n const createJob = async (req, res) => {\n-  res.send('create job');\n+  const { position, company } = req.body;\n+  if (!position || !company) {\n+    throw new BadRequestError('Please provide all values');\n+  }\n };\n const getAllJobs = async (req, res) => {\n   res.send('get all Jobs');\n };\n"
+                },
+                {
+                    "date": 1683881487357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n-import User from '../models/User.js';\n+import Job from '../models/Job.js';\n import { StatusCodes } from 'http-status-codes';\n import { BadRequestError, UnAuthenticatedError } from '../errors/index.js';\n \n const createJob = async (req, res) => {\n   const { position, company } = req.body;\n   if (!position || !company) {\n     throw new BadRequestError('Please provide all values');\n   }\n+  req.body.createdBy = req.user.userId;\n+  const job = await Job.create(req.body);\n };\n const getAllJobs = async (req, res) => {\n   res.send('get all Jobs');\n };\n"
+                },
+                {
+                    "date": 1683881533633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n     throw new BadRequestError('Please provide all values');\n   }\n   req.body.createdBy = req.user.userId;\n   const job = await Job.create(req.body);\n+  res.status(StatusCodes.CREATED).json({ job });\n };\n const getAllJobs = async (req, res) => {\n   res.send('get all Jobs');\n };\n"
+                },
+                {
+                    "date": 1683972007036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,12 @@\n   const job = await Job.create(req.body);\n   res.status(StatusCodes.CREATED).json({ job });\n };\n const getAllJobs = async (req, res) => {\n-  res.send('get all Jobs');\n+  const jobs = await Job.find({ createdBy: req.user.userId });\n+  res\n+    .status(StatusCodes.OK)\n+    .json({ jobs, totalJobs: jobs.length, numIfPages: 1 });\n };\n const updateJob = async (req, res) => {\n   res.send('update Job');\n };\n"
+                },
+                {
+                    "date": 1684000510329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,14 +10,14 @@\n   req.body.createdBy = req.user.userId;\n   const job = await Job.create(req.body);\n   res.status(StatusCodes.CREATED).json({ job });\n };\n-const getAllJobs = async (req, res) => {\n-  const jobs = await Job.find({ createdBy: req.user.userId });\n-  res\n-    .status(StatusCodes.OK)\n-    .json({ jobs, totalJobs: jobs.length, numIfPages: 1 });\n-};\n+// const getAllJobs = async (req, res) => {\n+//   const jobs = await Job.find({ createdBy: req.user.userId });\n+//   res\n+//     .status(StatusCodes.OK)\n+//     .json({ jobs, totalJobs: jobs.length, numIfPages: 1 });\n+// };\n const updateJob = async (req, res) => {\n   res.send('update Job');\n };\n const deleteJob = async (req, res) => {\n"
+                },
+                {
+                    "date": 1684000529228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,14 +10,14 @@\n   req.body.createdBy = req.user.userId;\n   const job = await Job.create(req.body);\n   res.status(StatusCodes.CREATED).json({ job });\n };\n-// const getAllJobs = async (req, res) => {\n-//   const jobs = await Job.find({ createdBy: req.user.userId });\n-//   res\n-//     .status(StatusCodes.OK)\n-//     .json({ jobs, totalJobs: jobs.length, numIfPages: 1 });\n-// };\n+const getAllJobs = async (req, res) => {\n+  const jobs = await Job.find({ createdBy: req.user.userId });\n+  res\n+    .status(StatusCodes.OK)\n+    .json({ jobs, totalJobs: jobs.length, numIfPages: 1 });\n+};\n const updateJob = async (req, res) => {\n   res.send('update Job');\n };\n const deleteJob = async (req, res) => {\n"
+                },
+                {
+                    "date": 1684023386753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n import Job from '../models/Job.js';\n import { StatusCodes } from 'http-status-codes';\n-import { BadRequestError, UnAuthenticatedError } from '../errors/index.js';\n+import {\n+  BadRequestError,\n+  NotFoundError,\n+  UnAuthenticatedError\n+} from '../errors/index.js';\n \n const createJob = async (req, res) => {\n   const { position, company } = req.body;\n   if (!position || !company) {\n@@ -17,9 +21,18 @@\n     .status(StatusCodes.OK)\n     .json({ jobs, totalJobs: jobs.length, numIfPages: 1 });\n };\n const updateJob = async (req, res) => {\n-  res.send('update Job');\n+  const { id: jobId } = req.params;\n+  const { company, position } = req.body;\n+\n+  if (!position || !company) {\n+    throw new BadRequestError('Please provide all values');\n+  }\n+  const job = await Job.findOne({ _id: jobId });\n+  if (!job) {\n+    throw new NotFoundError();\n+  }\n };\n const deleteJob = async (req, res) => {\n   res.send('delete job');\n };\n"
+                },
+                {
+                    "date": 1684023423461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     throw new BadRequestError('Please provide all values');\n   }\n   const job = await Job.findOne({ _id: jobId });\n   if (!job) {\n-    throw new NotFoundError();\n+    throw new NotFoundError(`No job with id:${jobId}`);\n   }\n };\n const deleteJob = async (req, res) => {\n   res.send('delete job');\n"
+                },
+                {
+                    "date": 1684023569450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,15 @@\n   }\n   const job = await Job.findOne({ _id: jobId });\n   if (!job) {\n     throw new NotFoundError(`No job with id:${jobId}`);\n+\n+    //check permissions\n+\n+    const updateJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n+      new: true,\n+      runValidators: true\n+    });\n   }\n };\n const deleteJob = async (req, res) => {\n   res.send('delete job');\n"
+                },
+                {
+                    "date": 1684023636010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,16 +30,15 @@\n   }\n   const job = await Job.findOne({ _id: jobId });\n   if (!job) {\n     throw new NotFoundError(`No job with id:${jobId}`);\n+  }\n+  //check permissions\n \n-    //check permissions\n-\n-    const updateJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n-      new: true,\n-      runValidators: true\n-    });\n-  }\n+  const updateJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n+    new: true,\n+    runValidators: true\n+  });\n };\n const deleteJob = async (req, res) => {\n   res.send('delete job');\n };\n"
+                },
+                {
+                    "date": 1684023882153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,12 +33,13 @@\n     throw new NotFoundError(`No job with id:${jobId}`);\n   }\n   //check permissions\n \n-  const updateJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n+  const updatedJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n     new: true,\n     runValidators: true\n   });\n+  res.status(StatusCodes.OK).json({ updatedJob });\n };\n const deleteJob = async (req, res) => {\n   res.send('delete job');\n };\n"
+                },
+                {
+                    "date": 1684027807702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   BadRequestError,\n   NotFoundError,\n   UnAuthenticatedError\n } from '../errors/index.js';\n+import checkPermissions from '../utils/checkPermissions.js';\n \n const createJob = async (req, res) => {\n   const { position, company } = req.body;\n   if (!position || !company) {\n@@ -27,14 +28,20 @@\n \n   if (!position || !company) {\n     throw new BadRequestError('Please provide all values');\n   }\n+\n   const job = await Job.findOne({ _id: jobId });\n   if (!job) {\n     throw new NotFoundError(`No job with id:${jobId}`);\n   }\n+\n   //check permissions\n+  console.log(typeof req.user.userId);\n+  console.log(typeof job.createdBy);\n \n+  checkPermissions(req.user, job.createdBy);\n+\n   const updatedJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n     new: true,\n     runValidators: true\n   });\n"
+                },
+                {
+                    "date": 1684028830997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,8 @@\n     throw new NotFoundError(`No job with id:${jobId}`);\n   }\n \n   //check permissions\n-  console.log(typeof req.user.userId);\n-  console.log(typeof job.createdBy);\n \n   checkPermissions(req.user, job.createdBy);\n \n   const updatedJob = await Job.findByIdAndUpdate({ _id: jobId }, req.body, {\n@@ -47,9 +45,15 @@\n   });\n   res.status(StatusCodes.OK).json({ updatedJob });\n };\n const deleteJob = async (req, res) => {\n-  res.send('delete job');\n+  const { id: jobId } = req.params;\n+  const job = await Job.findOne({ _id: jobId });\n+  if (!job) {\n+    throw new NotFoundError(`No job with id:${jobId}`);\n+  }\n+\n+  checkPermissions(req.user, job.createdBy);\n };\n const showStats = async (req, res) => {\n   res.send('show Stats');\n };\n"
+                },
+                {
+                    "date": 1684028963520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,11 @@\n     throw new NotFoundError(`No job with id:${jobId}`);\n   }\n \n   checkPermissions(req.user, job.createdBy);\n+\n+  await job.remove();\n+  res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });\n };\n const showStats = async (req, res) => {\n   res.send('show Stats');\n };\n"
+                },
+                {
+                    "date": 1684029423535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,16 +46,18 @@\n   res.status(StatusCodes.OK).json({ updatedJob });\n };\n const deleteJob = async (req, res) => {\n   const { id: jobId } = req.params;\n+\n   const job = await Job.findOne({ _id: jobId });\n   if (!job) {\n     throw new NotFoundError(`No job with id:${jobId}`);\n   }\n \n   checkPermissions(req.user, job.createdBy);\n \n   await job.remove();\n+\n   res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });\n };\n const showStats = async (req, res) => {\n   res.send('show Stats');\n"
+                },
+                {
+                    "date": 1684030839037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n   }\n \n   checkPermissions(req.user, job.createdBy);\n \n-  await job.remove();\n+  await job.deleteOne();\n \n   res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });\n };\n const showStats = async (req, res) => {\n"
+                },
+                {
+                    "date": 1684030871435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n   }\n \n   checkPermissions(req.user, job.createdBy);\n \n-  await job.deleteOne();\n+  await job.remove();\n \n   res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });\n };\n const showStats = async (req, res) => {\n"
+                },
+                {
+                    "date": 1684030945175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n   }\n \n   checkPermissions(req.user, job.createdBy);\n \n-  await job.remove();\n+  await job.deleteOne();\n \n   res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });\n };\n const showStats = async (req, res) => {\n"
+                },
+                {
+                    "date": 1684278942511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   NotFoundError,\n   UnAuthenticatedError\n } from '../errors/index.js';\n import checkPermissions from '../utils/checkPermissions.js';\n+import mongoose from 'mongoose';\n \n const createJob = async (req, res) => {\n   const { position, company } = req.body;\n   if (!position || !company) {\n@@ -59,8 +60,11 @@\n \n   res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });\n };\n const showStats = async (req, res) => {\n+  let stats = await Job.aggregate([{$match: {\n+    createdBy:mongoose.Types.ObjectId()\n+  }}])\n   res.send('show Stats');\n };\n \n export { createJob, getAllJobs, updateJob, deleteJob, showStats };\n"
+                },
+                {
+                    "date": 1684278985606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n const showStats = async (req, res) => {\n   let stats = await Job.aggregate([\n     {\n       $match: {\n-        createdBy: mongoose.Types.ObjectId()\n+        createdBy: mongoose.Types.ObjectId(req.user.userId)\n       }\n     }\n   ]);\n   res.send('show Stats');\n"
+                },
+                {
+                    "date": 1684279051195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,8 +67,8 @@\n         createdBy: mongoose.Types.ObjectId(req.user.userId)\n       }\n     }\n   ]);\n-  res.send('show Stats');\n+  res.status(StatusCodes.OK).json({stats})\n };\n \n export { createJob, getAllJobs, updateJob, deleteJob, showStats };\n"
+                }
+            ],
+            "date": 1683881217921,
+            "name": "Commit-0",
+            "content": "import User from '../models/User.js';\nimport { StatusCodes } from 'http-status-codes';\nimport { BadRequestError, UnAuthenticatedError } from '../errors/index.js';\n\nconst createJob = async (req, res) => {\n  res.send('create job');\n};\nconst getAllJobs = async (req, res) => {\n  res.send('get all Jobs');\n};\nconst updateJob = async (req, res) => {\n  res.send('update Job');\n};\nconst deleteJob = async (req, res) => {\n  res.send('delete job');\n};\nconst showStats = async (req, res) => {\n  res.send('show Stats');\n};\n\nexport { createJob, getAllJobs, updateJob, deleteJob, showStats };\n"
+        }
+    ]
+}

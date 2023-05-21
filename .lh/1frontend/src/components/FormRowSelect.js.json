@@ -1,0 +1,22 @@
+{
+    "sourceFile": "1frontend/src/components/FormRowSelect.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1683948767582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683965396057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,24 @@\n-const FormRowSelect = () => {\n-  return <div>FormRowSelect</div>;\n+const FormRowSelect = ({ labelText, name, value, list, handleChange }) => {\n+  return (\n+    <div className='form-row'>\n+      <label htmlFor={name} className='form-label'>\n+        {labelText || name}\n+      </label>\n+      <select\n+        name={name}\n+        value={value}\n+        onChange={handleChange}\n+        className='form-select'\n+      >\n+        {list.map((itemValue, index) => {\n+          return (\n+            <option key={index} value={itemValue}>\n+              {itemValue}\n+            </option>\n+          );\n+        })}\n+      </select>\n+    </div>\n+  );\n };\n export default FormRowSelect;\n"
+                }
+            ],
+            "date": 1683948767582,
+            "name": "Commit-0",
+            "content": "const FormRowSelect = () => {\n  return <div>FormRowSelect</div>;\n};\nexport default FormRowSelect;\n"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "1frontend/src/App.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1683470461975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684116556891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n   Profile,\n   Stats,\n   SharedLayout\n } from './pages/dashboard';\n+import ForgotPassword from './pages/ForgotPassword';\n const App = () => {\n   return (\n     <Router>\n       <Routes>\n@@ -25,8 +26,9 @@\n           <Route path='profile' element={<Profile />} />\n         </Route>\n         <Route path='/' element={<h1>dashboard</h1>} />\n         <Route path='/register' element={<Register />} />\n+        <Route path='/forgot-password' element={<ForgotPassword />} />\n         <Route path='/landing' element={<Landing />} />\n         <Route path='*' element={<Error />} />\n       </Routes>\n     </Router>\n"
+                }
+            ],
+            "date": 1683470461975,
+            "name": "Commit-0",
+            "content": "import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';\nimport { Landing, Register, Error, ProtectedRoute } from './pages';\nimport {\n  AddJob,\n  AllJobs,\n  Profile,\n  Stats,\n  SharedLayout\n} from './pages/dashboard';\nconst App = () => {\n  return (\n    <Router>\n      <Routes>\n        <Route\n          path='/'\n          element={\n            <ProtectedRoute>\n              <SharedLayout />\n            </ProtectedRoute>\n          }\n        >\n          <Route path='/' element={<Stats />} />\n          <Route path='all-jobs' element={<AllJobs />} />\n          <Route path='add-job' element={<AddJob />} />\n          <Route path='profile' element={<Profile />} />\n        </Route>\n        <Route path='/' element={<h1>dashboard</h1>} />\n        <Route path='/register' element={<Register />} />\n        <Route path='/landing' element={<Landing />} />\n        <Route path='*' element={<Error />} />\n      </Routes>\n    </Router>\n  );\n};\n\nexport default App;\n"
+        }
+    ]
+}

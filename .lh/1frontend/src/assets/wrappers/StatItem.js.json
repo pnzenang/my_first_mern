@@ -1,0 +1,18 @@
+{
+    "sourceFile": "1frontend/src/assets/wrappers/StatItem.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1684294213749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1684294213749,
+            "name": "Commit-0",
+            "content": "import styled from 'styled-components'\n\nconst Wrapper = styled.article`\n  padding: 2rem;\n  background: var(--white);\n  border-radius: var(--borderRadius);\n  border-bottom: 5px solid ${(props) => props.color};\n  header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n  }\n  .count {\n    display: block;\n    font-weight: 700;\n    font-size: 50px;\n    color: ${(props) => props.color};\n  }\n  .title {\n    margin: 0;\n    text-transform: capitalize;\n    letter-spacing: var(--letterSpacing);\n    text-align: left;\n    margin-top: 0.5rem;\n  }\n  .icon {\n    width: 70px;\n    height: 60px;\n    background: ${(props) => props.bcg};\n    border-radius: var(--borderRadius);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    svg {\n      font-size: 2rem;\n      color: ${(props) => props.color};\n    }\n  }\n`\n\nexport default Wrapper\n"
+        }
+    ]
+}

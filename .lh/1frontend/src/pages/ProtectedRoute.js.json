@@ -1,0 +1,22 @@
+{
+    "sourceFile": "1frontend/src/pages/ProtectedRoute.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1683443890926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684649603842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n import { useAppContext } from '../context/appContext';\n import { Navigate } from 'react-router-dom';\n+import Loading from '../components/Loading'\n \n const ProtectedRoute = ({ children }) => {\n-  const { user } = useAppContext();\n+  const { user, userLoading } = useAppContext();\n+  if(userLoading) return <Loading/>\n   if (!user) {\n     return <Navigate to='/landing' />;\n   }\n   return children;\n"
+                }
+            ],
+            "date": 1683443890926,
+            "name": "Commit-0",
+            "content": "import { useAppContext } from '../context/appContext';\nimport { Navigate } from 'react-router-dom';\n\nconst ProtectedRoute = ({ children }) => {\n  const { user } = useAppContext();\n  if (!user) {\n    return <Navigate to='/landing' />;\n  }\n  return children;\n};\nexport default ProtectedRoute;\n"
+        }
+    ]
+}

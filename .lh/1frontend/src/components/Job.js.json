@@ -1,0 +1,266 @@
+{
+    "sourceFile": "1frontend/src/components/Job.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 62,
+            "patches": [
+                {
+                    "date": 1683986841439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683987944020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const Job = () => {\n-  return <h1>Job</h1>;\n+  return <h1>single Job</h1>;\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683987987810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n-const Job = () => {\n-  return <h1>single Job</h1>;\n+const Job = ({ company }) => {\n+  return <h1>{company}</h1>;\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683999024234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import moment\n+\n const Job = ({ company }) => {\n   return <h1>{company}</h1>;\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683999077047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n-import moment\n+import moment from 'moment';\n \n-const Job = ({ company }) => {\n+const Job = ({ company, createdAt }) => {\n+  let date = moment(createdAt);\n   return <h1>{company}</h1>;\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683999092443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import moment from 'moment';\n \n const Job = ({ company, createdAt }) => {\n   let date = moment(createdAt);\n+  date = date;\n   return <h1>{company}</h1>;\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683999127300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import moment from 'moment';\n \n const Job = ({ company, createdAt }) => {\n   let date = moment(createdAt);\n-  date = date;\n+  date = date.format('MMM Do, YYYY');\n   return <h1>{company}</h1>;\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683999205933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,11 @@\n \n const Job = ({ company, createdAt }) => {\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n-  return <h1>{company}</h1>;\n+  return (\n+    <div>\n+      <h5>{company}</h5>\n+    </div>\n+  );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1683999221942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   date = date.format('MMM Do, YYYY');\n   return (\n     <div>\n       <h5>{company}</h5>\n+      <h5>{date}</h5>\n     </div>\n   );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1684005338218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import moment from 'moment';\n \n-const Job = ({ company, createdAt }) => {\n+const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n   return (\n     <div>\n"
+                },
+                {
+                    "date": 1684005419552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import moment from 'moment';\n+import { useAppContext } from '../context/appContext';\n \n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n+  const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n   return (\n     <div>\n"
+                },
+                {
+                    "date": 1684005454458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n   return (\n-    <div>\n+    <Wrapper>\n       <h5>{company}</h5>\n       <h5>{date}</h5>\n-    </div>\n+    </Wrapper>\n   );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1684005482490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import moment from 'moment';\n import { useAppContext } from '../context/appContext';\n-\n+import Wrapper from '../assets/wrappers/JobsContainer';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n"
+                },
+                {
+                    "date": 1684005521879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import moment from 'moment';\n import { useAppContext } from '../context/appContext';\n-import Wrapper from '../assets/wrappers/JobsContainer';\n+import Wrapper from '../assets/wrappers/Job';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n"
+                },
+                {
+                    "date": 1684005570698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,9 @@\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n   return (\n     <Wrapper>\n-      <h5>{company}</h5>\n-      <h5>{date}</h5>\n+      <div className='main-icon'>{company.charAt(0)}</div>\n     </Wrapper>\n   );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1684005622404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,11 @@\n   date = date.format('MMM Do, YYYY');\n   return (\n     <Wrapper>\n       <div className='main-icon'>{company.charAt(0)}</div>\n+      <div className='info'>\n+        <h5>{position}</h5>\n+      </div>\n     </Wrapper>\n   );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1684005640919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n     <Wrapper>\n       <div className='main-icon'>{company.charAt(0)}</div>\n       <div className='info'>\n         <h5>{position}</h5>\n+        <p>{company}</p>\n       </div>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684005686514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,13 +6,15 @@\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n   return (\n     <Wrapper>\n-      <div className='main-icon'>{company.charAt(0)}</div>\n-      <div className='info'>\n-        <h5>{position}</h5>\n-        <p>{company}</p>\n-      </div>\n+      <header>\n+        <div className='main-icon'>{company.charAt(0)}</div>\n+        <div className='info'>\n+          <h5>{position}</h5>\n+          <p>{company}</p>\n+        </div>\n+      </header>\n     </Wrapper>\n   );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1684005839893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,16 @@\n           <h5>{position}</h5>\n           <p>{company}</p>\n         </div>\n       </header>\n+      <div className='content'>\n+        {/* content center later */}\n+        <footer>\n+          <div className='actions'>\n+            <Link className='btn edit-btn'>Edit</Link>\n+          </div>\n+        </footer>\n+      </div>\n     </Wrapper>\n   );\n };\n export default Job;\n"
+                },
+                {
+                    "date": 1684005860507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import moment from 'moment';\n+import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n"
+                },
+                {
+                    "date": 1684006004283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n         {/* content center later */}\n         <footer>\n           <div className='actions'>\n             <Link className='btn edit-btn'>Edit</Link>\n+            <button className='btn delete-btn'>delete</button>\n           </div>\n         </footer>\n       </div>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1684006087969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,15 @@\n         {/* content center later */}\n         <footer>\n           <div className='actions'>\n             <Link className='btn edit-btn'>Edit</Link>\n-            <button className='btn delete-btn'>delete</button>\n+            <button\n+              type='button'\n+              className='btn delete-btn'\n+              onClick={() => deleteJob(_id)}\n+            >\n+              delete\n+            </button>\n           </div>\n         </footer>\n       </div>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1684006268979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,11 @@\n       <div className='content'>\n         {/* content center later */}\n         <footer>\n           <div className='actions'>\n-            <Link className='btn edit-btn'>Edit</Link>\n+            <Link to='/add-job' className='btn edit-btn'>\n+              Edit\n+            </Link>\n             <button\n               type='button'\n               className='btn delete-btn'\n               onClick={() => deleteJob(_id)}\n"
+                },
+                {
+                    "date": 1684006301378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       <div className='content'>\n         {/* content center later */}\n         <footer>\n           <div className='actions'>\n-            <Link to='/add-job' className='btn edit-btn'>\n+            <Link to='/add-job' className='btn edit-btn' onClick={setEditJob}>\n               Edit\n             </Link>\n             <button\n               type='button'\n"
+                },
+                {
+                    "date": 1684006325250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,13 @@\n       <div className='content'>\n         {/* content center later */}\n         <footer>\n           <div className='actions'>\n-            <Link to='/add-job' className='btn edit-btn' onClick={setEditJob}>\n+            <Link\n+              to='/add-job'\n+              className='btn edit-btn'\n+              onClick={() => setEditJob}\n+            >\n               Edit\n             </Link>\n             <button\n               type='button'\n"
+                },
+                {
+                    "date": 1684006386998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n           <div className='actions'>\n             <Link\n               to='/add-job'\n               className='btn edit-btn'\n-              onClick={() => setEditJob}\n+              onClick={() => setEditJob(_id)}\n             >\n               Edit\n             </Link>\n             <button\n"
+                },
+                {
+                    "date": 1684006854208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import moment from 'moment';\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n+import JobInfo from './JobInfo';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n"
+                },
+                {
+                    "date": 1684007001967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n+import { FaLocationArrow } from 'react-icons/fa';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n@@ -16,9 +17,11 @@\n           <p>{company}</p>\n         </div>\n       </header>\n       <div className='content'>\n-        {/* content center later */}\n+        <div className='content-center'>\n+          <JobInfo icon={<FaLocationArrow />} />\n+        </div>\n         <footer>\n           <div className='actions'>\n             <Link\n               to='/add-job'\n"
+                },
+                {
+                    "date": 1684007052314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         </div>\n       </header>\n       <div className='content'>\n         <div className='content-center'>\n-          <JobInfo icon={<FaLocationArrow />} />\n+          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684007344296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n-import { FaLocationArrow } from 'react-icons/fa';\n+import { FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n@@ -19,8 +19,11 @@\n       </header>\n       <div className='content'>\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n+          <JobInfo icon={<FaSuitcase />} text={status} />\n+          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n+          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684007421687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n-import { FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n+import { FaCalendar, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n@@ -19,11 +19,11 @@\n       </header>\n       <div className='content'>\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n+          <JobInfo icon={<FaCalendar />} text={createdAt} />\n           <JobInfo icon={<FaSuitcase />} text={status} />\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n-          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684007458394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,14 @@\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n-import { FaCalendar, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n+import {\n+  FaCalendar,\n+  FaCalendarAlt,\n+  FaLocationArrow,\n+  FaSuitcase\n+} from 'react-icons/fa';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n@@ -19,9 +24,9 @@\n       </header>\n       <div className='content'>\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n-          <JobInfo icon={<FaCalendar />} text={createdAt} />\n+          <JobInfo icon={<FaCalendarAlt />} text={createdAt} />\n           <JobInfo icon={<FaSuitcase />} text={status} />\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n         </div>\n         <footer>\n"
+                },
+                {
+                    "date": 1684007769269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   FaCalendarAlt,\n   FaLocationArrow,\n   FaSuitcase\n } from 'react-icons/fa';\n+import { MdSignalWifiStatusbar1Bar } from 'react-icons/md';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n@@ -26,9 +27,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={createdAt} />\n           <JobInfo icon={<FaSuitcase />} text={status} />\n-          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n+          <JobInfo icon={<MdSignalWifiStatusbar1Bar />} text={jobLocation} />\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684007825306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,9 @@\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n-import {\n-  FaCalendar,\n-  FaCalendarAlt,\n-  FaLocationArrow,\n-  FaSuitcase\n-} from 'react-icons/fa';\n+import { FaCalendarAlt, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n import { MdSignalWifiStatusbar1Bar } from 'react-icons/md';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n"
+                },
+                {
+                    "date": 1684007935878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={createdAt} />\n           <JobInfo icon={<FaSuitcase />} text={status} />\n-          <JobInfo icon={<MdSignalWifiStatusbar1Bar />} text={jobLocation} />\n+          <JobInfo icon={<HiStatusOnline />} text={jobLocation} />\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684007995406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n import { FaCalendarAlt, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n-import { MdSignalWifiStatusbar1Bar } from 'react-icons/md';\n+import { HiStatusOnline } from 'react-icons/li';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n"
+                },
+                {
+                    "date": 1684008011821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n import { FaCalendarAlt, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n-import { HiStatusOnline } from 'react-icons/li';\n+import { HiStatusOnline } from 'react-icons/hi';\n const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n"
+                },
+                {
+                    "date": 1684008176714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,11 +20,11 @@\n       </header>\n       <div className='content'>\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n-          <JobInfo icon={<FaCalendarAlt />} text={createdAt} />\n+          <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={status} />\n-          <JobInfo icon={<HiStatusOnline />} text={jobLocation} />\n+          <div></div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684008229641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       <div className='content'>\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n-          <JobInfo icon={<FaSuitcase />} text={status} />\n+          <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <div></div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684008259292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,17 @@\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n import { FaCalendarAlt, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n import { HiStatusOnline } from 'react-icons/hi';\n-const Job = ({ company, createdAt, _id, position, jobLocation, status }) => {\n+const Job = ({\n+  company,\n+  createdAt,\n+  _id,\n+  position,\n+  jobLocation,\n+  status,\n+  jobType\n+}) => {\n   const { setEditJob, deleteJob } = useAppContext();\n   let date = moment(createdAt);\n   date = date.format('MMM Do, YYYY');\n   return (\n"
+                },
+                {
+                    "date": 1684008397370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <div></div>\n+          <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684008555456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,12 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <div className={`status ${status}`}>{status}</div>\n+          <div className={`status ${status}`}>\n+            <HiStatusOnline />\n+            {status}\n+          </div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684008644504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <div className={`status ${status}`}>\n-            <HiStatusOnline />\n-            {status}\n-          </div>\n+          <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684008720334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,11 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n+          <span>\n+            <HiStatusOnline />\n+          </span>\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684008763439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <span>\n             <HiStatusOnline />\n+            <div className={`status ${status}`}>{status}</div>\n           </span>\n-          <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684008819471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,10 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <span>\n-            <HiStatusOnline />\n-            <div className={`status ${status}`}>{status}</div>\n-          </span>\n+\n+          <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684009270080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-\n+          <JobInfo icon={<FaSuitcase />} className={`status ${status}`} />\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684009861955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,14 @@\n import { Link } from 'react-router-dom';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/Job';\n import JobInfo from './JobInfo';\n-import { FaCalendarAlt, FaLocationArrow, FaSuitcase } from 'react-icons/fa';\n+import {\n+  FaCalendarAlt,\n+  FaCheckSquare,\n+  FaLocationArrow,\n+  FaSuitcase\n+} from 'react-icons/fa';\n import { HiStatusOnline } from 'react-icons/hi';\n const Job = ({\n   company,\n   createdAt,\n@@ -30,9 +35,20 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <JobInfo icon={<FaSuitcase />} className={`status ${status}`} />\n+          <JobInfo\n+            icon={<FaCheckSquare />}\n+            text={function example() {\n+              status === interview\n+                ? value1\n+                : condition2\n+                ? value2\n+                : condition3\n+                ? value3\n+                : value4;\n+            }}\n+          />\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684009900030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,20 +35,8 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <JobInfo\n-            icon={<FaCheckSquare />}\n-            text={function example() {\n-              status === interview\n-                ? value1\n-                : condition2\n-                ? value2\n-                : condition3\n-                ? value3\n-                : value4;\n-            }}\n-          />\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684010626816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,11 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <div className={`status ${status}`}>{status}</div>\n+          <div>\n+            <div className={`status ${status}`}>{status}</div>\n+          </div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684010679666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <div>\n+            <FaCheckSquare />\n             <div className={`status ${status}`}>{status}</div>\n           </div>\n         </div>\n         <footer>\n"
+                },
+                {
+                    "date": 1684010738217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,12 +35,10 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <div>\n-            <FaCheckSquare />\n-            <div className={`status ${status}`}>{status}</div>\n-          </div>\n+\n+          <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684010743928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,8 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684010833582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n+          <JobInfo icon={<FaCheckSquare />} text={status} />\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684010897624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,13 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <JobInfo icon={<FaCheckSquare />} text={status} />\n+          <JobInfo\n+            icon={<FaCheckSquare />}\n+            className={`status ${status}`}\n+            text={status}\n+          />\n           <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684010981600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n             icon={<FaCheckSquare />}\n             className={`status ${status}`}\n             text={status}\n           />\n-          <div className={`status ${status}`}>{status}</div>\n+          {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                },
+                {
+                    "date": 1684011030205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,13 +35,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <JobInfo\n-            icon={<FaCheckSquare />}\n-            className={`status ${status}`}\n-            text={status}\n-          />\n+          <JobInfo icon={<FaCheckSquare />} text={status} />\n           {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684011729804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,12 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <JobInfo icon={<FaCheckSquare />} text={status} />\n+          <JobInfo\n+            icon={<FaCheckSquare />}\n+            text={status === 'Pending' ? 'OK' : 'NO'}\n+          />\n           {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n         <footer>\n           <div className='actions'>\n"
+                },
+                {
+                    "date": 1684011765947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <JobInfo\n             icon={<FaCheckSquare />}\n-            text={status === 'Pending' ? 'OK' : 'NO'}\n+            text={status === Pending ? 'OK' : 'NO'}\n           />\n           {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n         <footer>\n"
+                },
+                {
+                    "date": 1684011779594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <JobInfo\n             icon={<FaCheckSquare />}\n-            text={status === Pending ? 'OK' : 'NO'}\n+            text={status === 'pending' ? 'OK' : 'NO'}\n           />\n           {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n         <footer>\n"
+                },
+                {
+                    "date": 1684012227789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,11 @@\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <JobInfo\n             icon={<FaCheckSquare />}\n-            text={status === 'pending' ? 'OK' : 'NO'}\n+            text={\n+              status === 'pending' ? 'OK' : status === 'interview' ? 'AK' : 'IK'\n+            }\n           />\n           {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n         <footer>\n"
+                },
+                {
+                    "date": 1684012289948,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,13 @@\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n           <JobInfo\n             icon={<FaCheckSquare />}\n             text={\n-              status === 'pending' ? 'OK' : status === 'interview' ? 'AK' : 'IK'\n+              status === 'pending'\n+                ? { status }\n+                : status === 'interview'\n+                ? 'AK'\n+                : 'IK'\n             }\n           />\n           {/* <div className={`status ${status}`}>{status}</div> */}\n         </div>\n"
+                },
+                {
+                    "date": 1684012420236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,19 +35,9 @@\n         <div className='content-center'>\n           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />\n           <JobInfo icon={<FaCalendarAlt />} text={date} />\n           <JobInfo icon={<FaSuitcase />} text={jobType} />\n-          <JobInfo\n-            icon={<FaCheckSquare />}\n-            text={\n-              status === 'pending'\n-                ? { status }\n-                : status === 'interview'\n-                ? 'AK'\n-                : 'IK'\n-            }\n-          />\n-          {/* <div className={`status ${status}`}>{status}</div> */}\n+          <div className={`status ${status}`}>{status}</div>\n         </div>\n         <footer>\n           <div className='actions'>\n             <Link\n"
+                }
+            ],
+            "date": 1683986841439,
+            "name": "Commit-0",
+            "content": "const Job = () => {\n  return <h1>Job</h1>;\n};\nexport default Job;\n"
+        }
+    ]
+}

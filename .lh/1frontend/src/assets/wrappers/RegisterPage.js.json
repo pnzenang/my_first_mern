@@ -1,0 +1,26 @@
+{
+    "sourceFile": "1frontend/src/assets/wrappers/RegisterPage.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1684118746216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684118804779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,8 @@\n     cursor: pointer;\n     letter-spacing: var(--letterSpacing);\n   }\n   .forgot-password {\n-    color: var(--danger);\n+    color: var(--red-dark);\n   }\n `;\n export default Wrapper;\n"
+                },
+                {
+                    "date": 1684118843129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,7 +32,8 @@\n     letter-spacing: var(--letterSpacing);\n   }\n   .forgot-password {\n     color: var(--red-dark);\n+    text-align:right\n   }\n `;\n export default Wrapper;\n"
+                }
+            ],
+            "date": 1684118746216,
+            "name": "Commit-0",
+            "content": "import styled from 'styled-components'\n\nconst Wrapper = styled.section`\n  display: grid;\n  align-items: center;\n  .logo {\n    display: block;\n    margin: 0 auto;\n    margin-bottom: 1.38rem;\n  }\n  .form {\n    max-width: 400px;\n    border-top: 5px solid var(--primary-500);\n  }\n\n  h3 {\n    text-align: center;\n  }\n  p {\n    margin: 0;\n    margin-top: 1rem;\n    text-align: center;\n  }\n  .btn {\n    margin-top: 1rem;\n  }\n  .member-btn {\n    background: transparent;\n    border: transparent;\n    color: var(--primary-500);\n    cursor: pointer;\n    letter-spacing: var(--letterSpacing);\n  }\n  .forgot-password{\n    color:var(--danger)\n  }\n`\nexport default Wrapper\n"
+        }
+    ]
+}

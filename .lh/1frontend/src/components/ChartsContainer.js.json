@@ -1,0 +1,70 @@
+{
+    "sourceFile": "1frontend/src/components/ChartsContainer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1684285877655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684291197477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n-\n const ChartsContainer = () => {\n   return (\n     <div>\n       <h1>Charts Container</h1>\n     </div>\n   );\n-}\n-export default ChartsContainer\n\\ No newline at end of file\n+};\n+export default ChartsContainer;\n"
+                },
+                {
+                    "date": 1684375274123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,10 @@\n+import React, { useState } from 'react';\n+import BarChart from './BarChart';\n+import AreaChart from './AreaChart';\n+import { useAppContext } from '../context/appContext';\n+import Wrapper from '../assets/wrappers/ChartsContainer';\n+\n const ChartsContainer = () => {\n   return (\n     <div>\n       <h1>Charts Container</h1>\n"
+                },
+                {
+                    "date": 1684375315807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/ChartsContainer';\n \n const ChartsContainer = () => {\n+  const { monthlyApplications: data } = useAppContext();\n   return (\n     <div>\n       <h1>Charts Container</h1>\n     </div>\n"
+                },
+                {
+                    "date": 1684375422706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n \n const ChartsContainer = () => {\n   const { monthlyApplications: data } = useAppContext();\n   return (\n-    <div>\n-      <h1>Charts Container</h1>\n-    </div>\n+    <Wrapper>\n+      <BarChart data={data} />\n+      <AreaChart data={data} />\n+    </Wrapper>\n   );\n };\n export default ChartsContainer;\n"
+                },
+                {
+                    "date": 1684375782628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/ChartsContainer';\n \n const ChartsContainer = () => {\n+  const [barChart, setBarChart] = useState(true);\n   const { monthlyApplications: data } = useAppContext();\n   return (\n     <Wrapper>\n       <BarChart data={data} />\n"
+                },
+                {
+                    "date": 1684375886345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,9 @@\n   const [barChart, setBarChart] = useState(true);\n   const { monthlyApplications: data } = useAppContext();\n   return (\n     <Wrapper>\n-      <BarChart data={data} />\n-      <AreaChart data={data} />\n+      {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n };\n export default ChartsContainer;\n"
+                },
+                {
+                    "date": 1684375943095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   const [barChart, setBarChart] = useState(true);\n   const { monthlyApplications: data } = useAppContext();\n   return (\n     <Wrapper>\n+      <h4>Monthly Applications</h4>\n       {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684376014675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   const [barChart, setBarChart] = useState(true);\n   const { monthlyApplications: data } = useAppContext();\n   return (\n     <Wrapper>\n-      <h4>Monthly Applications</h4>\n+      <h3>Monthly Applications</h3>\n       {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684376289477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   const { monthlyApplications: data } = useAppContext();\n   return (\n     <Wrapper>\n       <h3>Monthly Applications</h3>\n+      <button type='button' onClick={() => setBarChart(!barChart)}></button>\n       {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684376346957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,11 @@\n   const { monthlyApplications: data } = useAppContext();\n   return (\n     <Wrapper>\n       <h3>Monthly Applications</h3>\n-      <button type='button' onClick={() => setBarChart(!barChart)}></button>\n+      <button type='button' onClick={() => setBarChart(!barChart)}>\n+        {barChart ? 'Area Chart' : 'BarChart'}\n+      </button>\n       {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684376363176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   return (\n     <Wrapper>\n       <h3>Monthly Applications</h3>\n       <button type='button' onClick={() => setBarChart(!barChart)}>\n-        {barChart ? 'Area Chart' : 'BarChart'}\n+        {barChart ? 'Area Chart' : 'Bar Chart'}\n       </button>\n       {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1684378019503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useState } from 'react';\n-import BarChart from './BarChart';\n+import BarChartComponent from './BarChartComponent';\n import AreaChart from './AreaChart';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/ChartsContainer';\n \n@@ -12,9 +12,9 @@\n       <h3>Monthly Applications</h3>\n       <button type='button' onClick={() => setBarChart(!barChart)}>\n         {barChart ? 'Area Chart' : 'Bar Chart'}\n       </button>\n-      {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}\n+      {barChart ? <BarChartComponent data={data} /> : <AreaChart data={data} />}\n     </Wrapper>\n   );\n };\n export default ChartsContainer;\n"
+                },
+                {
+                    "date": 1684418098843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useState } from 'react';\n import BarChartComponent from './BarChartComponent';\n-import AreaChart from './AreaChart';\n+import AreaChartComponent from './AreaChartComponent';\n import { useAppContext } from '../context/appContext';\n import Wrapper from '../assets/wrappers/ChartsContainer';\n \n const ChartsContainer = () => {\n@@ -12,9 +12,13 @@\n       <h3>Monthly Applications</h3>\n       <button type='button' onClick={() => setBarChart(!barChart)}>\n         {barChart ? 'Area Chart' : 'Bar Chart'}\n       </button>\n-      {barChart ? <BarChartComponent data={data} /> : <AreaChart data={data} />}\n+      {barChart ? (\n+        <BarChartComponent data={data} />\n+      ) : (\n+        <AreaChartComponent data={data} />\n+      )}\n     </Wrapper>\n   );\n };\n export default ChartsContainer;\n"
+                }
+            ],
+            "date": 1684285877655,
+            "name": "Commit-0",
+            "content": "\nconst ChartsContainer = () => {\n  return (\n    <div>\n      <h1>Charts Container</h1>\n    </div>\n  );\n}\nexport default ChartsContainer"
+        }
+    ]
+}

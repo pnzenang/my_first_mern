@@ -1,0 +1,18 @@
+{
+    "sourceFile": "middleware/error-handler.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1684636757150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1684636757150,
+            "name": "Commit-0",
+            "content": "import { StatusCodes } from 'http-status-codes';\n\nconst errorHandlerMiddleware = (err, req, res, next) => {\n\n  const defaultError = {\n    statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,\n    msg: err.message || 'Something went wrong, try again later'\n  };\n\n  if (err.name === 'ValidationError') {\n    defaultError.statusCode = StatusCodes.BAD_REQUEST;\n    // defaultError.msg = err.message;\n    defaultError.msg = Object.values(err.errors)\n      .map((item) => item.message)\n      .join(',');\n  }\n  if (err.code && err.code === 11000) {\n    defaultError.statusCode = StatusCodes.BAD_REQUEST;\n    defaultError.msg = `${Object.keys(err.keyValue)} field has to be unique`;\n  }\n\n  res.status(defaultError.statusCode).json({ msg: defaultError.msg });\n};\nexport default errorHandlerMiddleware;\n"
+        }
+    ]
+}

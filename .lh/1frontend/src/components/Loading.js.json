@@ -1,0 +1,22 @@
+{
+    "sourceFile": "1frontend/src/components/Loading.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1683986716277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683987315781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n-const Loading = () => {\n-  return <div className='loading'></div>;\n+const Loading = ({ center }) => {\n+  return <div className={center ? 'loading loading-center' : 'loading'}></div>;\n };\n export default Loading;\n"
+                }
+            ],
+            "date": 1683986716277,
+            "name": "Commit-0",
+            "content": "const Loading = () => {\n  return <div className='loading'></div>;\n};\nexport default Loading;\n"
+        }
+    ]
+}

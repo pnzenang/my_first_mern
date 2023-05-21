@@ -1,0 +1,34 @@
+{
+    "sourceFile": "1frontend/src/components/BarChart.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1684374376225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684374454692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const BarChart = () => {\n-  return <div>BarChart</div>;\n+  return <h2>Bar Chart</h2>;\n };\n export default BarChart;\n"
+                },
+                {
+                    "date": 1684377524054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,14 @@\n+import {\n+  BarChart,\n+  Bar,\n+  XAxis,\n+  YAxis,\n+  CartesianGrid,\n+  Tooltip,\n+  ResponsiveContainer\n+} from 'recharts';\n+\n const BarChart = () => {\n   return <h2>Bar Chart</h2>;\n };\n export default BarChart;\n"
+                },
+                {
+                    "date": 1684377634039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import {\n-  BarChart,\n+  // BarChart,\n   Bar,\n   XAxis,\n   YAxis,\n   CartesianGrid,\n"
+                },
+                {
+                    "date": 1684377982791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,8 @@\n   Tooltip,\n   ResponsiveContainer\n } from 'recharts';\n \n-const BarChart = () => {\n+const BarChartComponent = () => {\n   return <h2>Bar Chart</h2>;\n };\n-export default BarChart;\n+export default BarChartComponent;\n"
+                }
+            ],
+            "date": 1684374376225,
+            "name": "Commit-0",
+            "content": "const BarChart = () => {\n  return <div>BarChart</div>;\n};\nexport default BarChart;\n"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "sourceFile": "1frontend/src/pages/dashboard/SharedLayout.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1683458899660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683459006928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,13 @@\n import { Navbar, SmallSidebar, BigSidebar } from '../../components';\n const SharedLayout = () => {\n   return (\n     <Wrapper>\n-      <nav>\n-        <Link to='add-job'>add job</Link>\n-        <Link to='all-jobs'>all job</Link>\n-      </nav>\n+      <main className='dashboard'>\n+        <SmallSidebar />\n+        <BigSidebar />\n+        <div></div>\n+      </main>\n       <Outlet />\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683459153058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,14 @@\n     <Wrapper>\n       <main className='dashboard'>\n         <SmallSidebar />\n         <BigSidebar />\n-        <div></div>\n+        <div>\n+          <Navbar />\n+          <div className='dashboard-page'>\n+            <Outlet />\n+          </div>\n+        </div>\n       </main>\n       <Outlet />\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683459443428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,9 @@\n         <SmallSidebar />\n         <BigSidebar />\n         <div>\n           <Navbar />\n-          <div className='dashboard-page'>\n-            <Outlet />\n-          </div>\n+          <div className='dashboard-page'></div>\n         </div>\n       </main>\n       <Outlet />\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683459489130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,13 @@\n         <SmallSidebar />\n         <BigSidebar />\n         <div>\n           <Navbar />\n-          <div className='dashboard-page'></div>\n+          <div className='dashboard-page'>\n+            <Outlet />\n+          </div>\n         </div>\n       </main>\n-      <Outlet />\n     </Wrapper>\n   );\n };\n export default SharedLayout;\n"
+                },
+                {
+                    "date": 1683459676554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n         <div>\n           <Navbar />\n           <div className='dashboard-page'>\n             <Outlet />\n+            <Outlet />\n           </div>\n         </div>\n       </main>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1683459685466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n         <div>\n           <Navbar />\n           <div className='dashboard-page'>\n             <Outlet />\n-            <Outlet />\n           </div>\n         </div>\n       </main>\n     </Wrapper>\n"
+                },
+                {
+                    "date": 1684634010879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Outlet, Link } from 'react-router-dom';\n+import { Outlet } from 'react-router-dom';\n import Wrapper from '../../assets/wrappers/SharedLayout';\n import { Navbar, SmallSidebar, BigSidebar } from '../../components';\n const SharedLayout = () => {\n   return (\n"
+                }
+            ],
+            "date": 1683458899660,
+            "name": "Commit-0",
+            "content": "import { Outlet, Link } from 'react-router-dom';\nimport Wrapper from '../../assets/wrappers/SharedLayout';\nimport { Navbar, SmallSidebar, BigSidebar } from '../../components';\nconst SharedLayout = () => {\n  return (\n    <Wrapper>\n      <nav>\n        <Link to='add-job'>add job</Link>\n        <Link to='all-jobs'>all job</Link>\n      </nav>\n      <Outlet />\n    </Wrapper>\n  );\n};\nexport default SharedLayout;\n"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1683384752247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683384965939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   \"description\": \"Track Jobs\",\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n-    \"start\": \"nodemon server \"\n+    \"server\": \"nodemon server \"\n   },\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n"
+                },
+                {
+                    "date": 1683385193704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n   \"description\": \"Track Jobs\",\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n-    \"server\": \"nodemon server \"\n+    \"server\": \"nodemon server \",\n+    \"client\": \"npm start -- prefix 1frontend\"\n   },\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n"
+                },
+                {
+                    "date": 1683385465214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n     \"server\": \"nodemon server \",\n-    \"client\": \"npm start -- prefix 1frontend\"\n+    \"client\": \"npm start --prefix 1frontend\"\n   },\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n"
+                },
+                {
+                    "date": 1683385713608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n     \"server\": \"nodemon server \",\n-    \"client\": \"npm start --prefix 1frontend\"\n+    \"client\": \"npm start --prefix 1frontend\",\n+    \"start\": \"concurrently --kill-others-on-fail \\\" npm run server \\\" \\\" npm run client\\\"\"\n   },\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n"
+                },
+                {
+                    "date": 1683385894561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   \"description\": \"Track Jobs\",\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n-    \"server\": \"nodemon server \",\n+    \"server\": \"nodemon server --ignore client\",\n     \"client\": \"npm start --prefix 1frontend\",\n     \"start\": \"concurrently --kill-others-on-fail \\\" npm run server \\\" \\\" npm run client\\\"\"\n   },\n   \"keywords\": [],\n"
+                },
+                {
+                    "date": 1683460206223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     \"express-async-errors\": \"^3.1.1\",\n     \"http-status-codes\": \"^2.2.0\",\n     \"jsonwebtoken\": \"^9.0.0\",\n     \"mongoose\": \"^7.1.0\",\n+    \"morgan\": \"^1.10.0\",\n     \"nodemon\": \"^2.0.22\",\n     \"validator\": \"^13.9.0\"\n   }\n }\n"
+                },
+                {
+                    "date": 1684376588442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     \"express\": \"^4.18.2\",\n     \"express-async-errors\": \"^3.1.1\",\n     \"http-status-codes\": \"^2.2.0\",\n     \"jsonwebtoken\": \"^9.0.0\",\n+    \"moment\": \"^2.29.4\",\n     \"mongoose\": \"^7.1.0\",\n     \"morgan\": \"^1.10.0\",\n     \"nodemon\": \"^2.0.22\",\n     \"validator\": \"^13.9.0\"\n"
+                },
+                {
+                    "date": 1684634406891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   \"description\": \"Track Jobs\",\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n+    \"build-client\":\"cd 1frontend && nom run build\"\n     \"server\": \"nodemon server --ignore client\",\n     \"client\": \"npm start --prefix 1frontend\",\n     \"start\": \"concurrently --kill-others-on-fail \\\" npm run server \\\" \\\" npm run client\\\"\"\n   },\n"
+                },
+                {
+                    "date": 1684634706310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   \"description\": \"Track Jobs\",\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n-    \"build-client\":\"cd 1frontend && nom run build\",\n+    \"build-client\":\"cd 1frontend && npm run build\",\n     \"server\": \"nodemon server --ignore client\",\n     \"client\": \"npm start --prefix 1frontend\",\n     \"start\": \"concurrently --kill-others-on-fail \\\" npm run server \\\" \\\" npm run client\\\"\"\n   },\n"
+                },
+                {
+                    "date": 1684695525645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   \"description\": \"Track Jobs\",\n   \"main\": \"index.js\",\n   \"type\": \"module\",\n   \"scripts\": {\n+    \"install-client\":\"cd 1frontend && npm install\",\n     \"build-client\": \"cd 1frontend && npm run build\",\n     \"server\": \"nodemon server --ignore client\",\n     \"client\": \"npm start --prefix 1frontend\",\n     \"start\": \"concurrently --kill-others-on-fail \\\" npm run server \\\" \\\" npm run client\\\"\"\n"
+                }
+            ],
+            "date": 1683384752247,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"2-back\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Track Jobs\",\n  \"main\": \"index.js\",\n  \"type\": \"module\",\n  \"scripts\": {\n    \"start\": \"nodemon server \"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"dependencies\": {\n    \"bcryptjs\": \"^2.4.3\",\n    \"colors\": \"^1.4.0\",\n    \"concurrently\": \"^8.0.1\",\n    \"dotenv\": \"^16.0.3\",\n    \"express\": \"^4.18.2\",\n    \"express-async-errors\": \"^3.1.1\",\n    \"http-status-codes\": \"^2.2.0\",\n    \"jsonwebtoken\": \"^9.0.0\",\n    \"mongoose\": \"^7.1.0\",\n    \"nodemon\": \"^2.0.22\",\n    \"validator\": \"^13.9.0\"\n  }\n}\n"
+        }
+    ]
+}

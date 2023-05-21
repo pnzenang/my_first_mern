@@ -1,0 +1,78 @@
+{
+    "sourceFile": "1frontend/src/context/actions.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1683462758886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683464907606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,4 +9,5 @@\n export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';\n export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';\n \n export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';\n+export const LOGOUT_USER = 'LOGOUT_USER';\n"
+                },
+                {
+                    "date": 1683877512748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,4 +10,8 @@\n export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';\n \n export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';\n export const LOGOUT_USER = 'LOGOUT_USER';\n+\n+export const UPDATE_USER_BEGIN = 'UPDATE_USER_BEGIN';\n+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';\n+export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';\n"
+                },
+                {
+                    "date": 1683965890754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,4 +14,6 @@\n \n export const UPDATE_USER_BEGIN = 'UPDATE_USER_BEGIN';\n export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';\n export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';\n+\n+export const HANDLE_CHANGE = 'HANDLE_CHANGE';\n"
+                },
+                {
+                    "date": 1683967256253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,4 +16,5 @@\n export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';\n export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';\n \n export const HANDLE_CHANGE = 'HANDLE_CHANGE';\n+export const CLEAR_CHANGE = 'CLEAR_CHANGE';\n"
+                },
+                {
+                    "date": 1683967621656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,5 @@\n export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';\n export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';\n \n export const HANDLE_CHANGE = 'HANDLE_CHANGE';\n-export const CLEAR_CHANGE = 'CLEAR_CHANGE';\n+export const CLEAR_VALUES = 'CLEAR_VALUES';\n"
+                },
+                {
+                    "date": 1683969494283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,4 +17,8 @@\n export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';\n \n export const HANDLE_CHANGE = 'HANDLE_CHANGE';\n export const CLEAR_VALUES = 'CLEAR_VALUES';\n+\n+export const CREATE_JOB_BEGIN = 'CREATE_JOB_BEGIN';\n+export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS';\n+export const CREATE_JOB_ERROR = 'CREATE_JOB_ERROR';\n"
+                },
+                {
+                    "date": 1683973315364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,4 +21,7 @@\n \n export const CREATE_JOB_BEGIN = 'CREATE_JOB_BEGIN';\n export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS';\n export const CREATE_JOB_ERROR = 'CREATE_JOB_ERROR';\n+\n+export const GET_JOBS_BEGIN = 'GET_JOBS_BEGIN';\n+export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS';\n"
+                },
+                {
+                    "date": 1684012733109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,4 +24,6 @@\n export const CREATE_JOB_ERROR = 'CREATE_JOB_ERROR';\n \n export const GET_JOBS_BEGIN = 'GET_JOBS_BEGIN';\n export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS';\n+\n+export const SET_EDIT_JOB = 'SET_EDIT_JOB';\n"
+                },
+                {
+                    "date": 1684031751159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,4 +26,6 @@\n export const GET_JOBS_BEGIN = 'GET_JOBS_BEGIN';\n export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS';\n \n export const SET_EDIT_JOB = 'SET_EDIT_JOB';\n+\n+export const DELETE_JOB_BEGIN = 'DELETE_JOB_BEGIN';\n"
+                },
+                {
+                    "date": 1684033002732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,4 +28,8 @@\n \n export const SET_EDIT_JOB = 'SET_EDIT_JOB';\n \n export const DELETE_JOB_BEGIN = 'DELETE_JOB_BEGIN';\n+\n+export const EDIT_JOB_BEGIN = 'EDIT_JOB_BEGIN';\n+export const EDIT_JOB_SUCCESS = 'EDIT_JOB_SUCCESS';\n+export const EDIT_JOB_ERROR = 'EDIT_JOB_ERROR';\n"
+                },
+                {
+                    "date": 1684282882939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,4 +32,8 @@\n \n export const EDIT_JOB_BEGIN = 'EDIT_JOB_BEGIN';\n export const EDIT_JOB_SUCCESS = 'EDIT_JOB_SUCCESS';\n export const EDIT_JOB_ERROR = 'EDIT_JOB_ERROR';\n+\n+export const SHOW_STATS_BEGIN = 'SHOW_STATS_BEGIN';\n+export const SHOW_STATS_SUCCESS = 'SHOW_STATS_SUCCESS';\n+\n"
+                },
+                {
+                    "date": 1684467631081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,4 +35,6 @@\n export const EDIT_JOB_ERROR = 'EDIT_JOB_ERROR';\n \n export const SHOW_STATS_BEGIN = 'SHOW_STATS_BEGIN';\n export const SHOW_STATS_SUCCESS = 'SHOW_STATS_SUCCESS';\n+\n+export const CLEAR_FILTERS = 'CLEAR_FILTERS';\n"
+                },
+                {
+                    "date": 1684476694236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,4 +37,6 @@\n export const SHOW_STATS_BEGIN = 'SHOW_STATS_BEGIN';\n export const SHOW_STATS_SUCCESS = 'SHOW_STATS_SUCCESS';\n \n export const CLEAR_FILTERS = 'CLEAR_FILTERS';\n+\n+export const CHANGE_PAGE = 'CHANGE_PAGE';\n"
+                },
+                {
+                    "date": 1684647559355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,4 +39,7 @@\n \n export const CLEAR_FILTERS = 'CLEAR_FILTERS';\n \n export const CHANGE_PAGE = 'CHANGE_PAGE';\n+\n+export const GET_CURRENT_USER_BEGIN = 'GET_CURRENT_USER_BEGIN';\n+export const GET_CURRENT_USER_SUCCESS = 'GET_CURRENT_USER_SUCCESS';\n"
+                },
+                {
+                    "date": 1684648117872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,4 @@\n export const CHANGE_PAGE = 'CHANGE_PAGE';\n \n export const GET_CURRENT_USER_BEGIN = 'GET_CURRENT_USER_BEGIN';\n export const GET_CURRENT_USER_SUCCESS = 'GET_CURRENT_USER_SUCCESS';\n-\n"
+                }
+            ],
+            "date": 1683462758886,
+            "name": "Commit-0",
+            "content": "export const DISPLAY_ALERT = 'SHOW_ALERT';\nexport const CLEAR_ALERT = 'CLEAR_ALERT';\n\nexport const REGISTER_USER_BEGIN = 'REGISTER_USER_BEGIN';\nexport const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';\nexport const REGISTER_USER_ERROR = 'REGISTER_USER_ERROR';\n\nexport const LOGIN_USER_BEGIN = 'LOGIN_USER_BEGIN';\nexport const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';\nexport const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';\n\nexport const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';\n"
+        }
+    ]
+}

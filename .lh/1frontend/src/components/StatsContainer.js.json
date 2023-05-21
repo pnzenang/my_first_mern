@@ -1,0 +1,26 @@
+{
+    "sourceFile": "1frontend/src/components/StatsContainer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1684285407819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684285716712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n+import StatsItem from \"./StatsItem\";\n+\n const StatsContainer = () => {\n   return (\n     <div>\n       <h1>stats container</h1>\n+      <StatsItem/>\n     </div>\n   );\n };\n export default StatsContainer;\n"
+                },
+                {
+                    "date": 1684292911311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,21 @@\n+\n+import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa';\n+import { useAppContext } from '../context/appContext';\n import StatsItem from './StatsItem';\n+import Wrapper from '../assets/wrappers/StatsContainer';\n+Wrapper\n \n const StatsContainer = () => {\n+ const { stats } = useAppContext()\n+ const defaultStats = [\n+  {title: 'pending applications', count: stats.pending || 0, icon:<FaSuitcaseRolling/>}\n+  \n+ ]\n   return (\n-    <div>\n+   <div>\n+    \n+\n       <h1>stats container</h1>\n       <StatsItem />\n     </div>\n   );\n"
+                }
+            ],
+            "date": 1684285407819,
+            "name": "Commit-0",
+            "content": "\n\nconst StatsContainer = () => {\n  return (\n    <div><h1>stats container</h1></div>\n  )\n}\nexport default StatsContainer"
+        }
+    ]
+}

@@ -1,0 +1,94 @@
+{
+    "sourceFile": "controllers/authController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1683600956369,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683601040540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,13 +50,14 @@\n   const token = user.createJWT();\n   user.password = undefined;\n   res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n-const updateUser = (req, res) => {\n+const updateUser = async (req, res) => {\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n+  const user = await User.save();\n   res.send('update user');\n };\n \n export { register, login, updateUser };\n"
+                },
+                {
+                    "date": 1683601295599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,13 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.save();\n+  const user = await User.findOne({ _id: req.user.userId });\n+\n+  user.email = email;\n+  (user.name = name), (user.lastName = lastName), (user.location = location);\n+\n   res.send('update user');\n };\n \n export { register, login, updateUser };\n"
+                },
+                {
+                    "date": 1683601365992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,11 @@\n   }\n   const user = await User.findOne({ _id: req.user.userId });\n \n   user.email = email;\n-  (user.name = name), (user.lastName = lastName), (user.location = location);\n+  user.name = name;\n+  user.lastName = lastName;\n+  user.location = location;\n \n   res.send('update user');\n };\n \n"
+                },
+                {
+                    "date": 1683601389895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,10 @@\n   user.name = name;\n   user.lastName = lastName;\n   user.location = location;\n \n+  await user.save();\n+\n   res.send('update user');\n };\n \n export { register, login, updateUser };\n"
+                },
+                {
+                    "date": 1683602475827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,8 +64,10 @@\n   user.location = location;\n \n   await user.save();\n \n-  res.send('update user');\n+  const token = user.createJWT();\n+\n+  res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n \n export { register, login, updateUser };\n"
+                },
+                {
+                    "date": 1683607537404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findOne({ _id: req.user.userId });\n+  const user = await User.findOne({ _id: req.user.user._Id });\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607556098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findOne({ _id: req.user.user._Id });\n+  const user = await User.findOne({ _id: req.user.userId });\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607654990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findOne({ _id: req.user.userId });\n+  const user = await User.findById(_id);\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607674186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findById(_id);\n+  const user = await User.findById(id);\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607736901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findById(id);\n+  const user = await User.findOne();\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607785839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findOne();\n+  const user = await User.findOne({ _id: req.user.userId });\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607822048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findOne({ _id: req.user.userId });\n+  const user = await User.findOne({ _id: user.userId });\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683607849185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   const { email, name, lastName, location } = req.body;\n   if (!email || !name || !lastName || !location) {\n     throw new BadRequestError('Please provide all values');\n   }\n-  const user = await User.findOne({ _id: user.userId });\n+  const user = await User.findOne({ _id: req.user.userId });\n \n   user.email = email;\n   user.name = name;\n   user.lastName = lastName;\n"
+                },
+                {
+                    "date": 1683645296019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,23 +51,24 @@\n   user.password = undefined;\n   res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n const updateUser = async (req, res) => {\n-  const { email, name, lastName, location } = req.body;\n-  if (!email || !name || !lastName || !location) {\n-    throw new BadRequestError('Please provide all values');\n-  }\n-  const user = await User.findOne({ _id: req.user.userId });\n+  // const { email, name, lastName, location } = req.body;\n+  // if (!email || !name || !lastName || !location) {\n+  //   throw new BadRequestError('Please provide all values');\n+  // }\n+  // const user = await User.findOne({ _id: req.user.userId });\n \n-  user.email = email;\n-  user.name = name;\n-  user.lastName = lastName;\n-  user.location = location;\n+  // user.email = email;\n+  // user.name = name;\n+  // user.lastName = lastName;\n+  // user.location = location;\n \n-  await user.save();\n+  // await user.save();\n \n-  const token = user.createJWT();\n+  // const token = user.createJWT();\n \n-  res.status(StatusCodes.OK).json({ user, token, location: user.location });\n+  // res.status(StatusCodes.OK).json({ user, token, location: user.location });\n+  res.send('update User');\n };\n \n export { register, login, updateUser };\n"
+                },
+                {
+                    "date": 1683684197185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,24 +51,23 @@\n   user.password = undefined;\n   res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n const updateUser = async (req, res) => {\n-  // const { email, name, lastName, location } = req.body;\n-  // if (!email || !name || !lastName || !location) {\n-  //   throw new BadRequestError('Please provide all values');\n-  // }\n-  // const user = await User.findOne({ _id: req.user.userId });\n+  const { email, name, lastName, location } = req.body;\n+  if (!email || !name || !lastName || !location) {\n+    throw new BadRequestError('Please provide all values');\n+  }\n+  const user = await User.findOne({ _id: req.user.userId });\n \n-  // user.email = email;\n-  // user.name = name;\n-  // user.lastName = lastName;\n-  // user.location = location;\n+  user.email = email;\n+  user.name = name;\n+  user.lastName = lastName;\n+  user.location = location;\n \n-  // await user.save();\n+  await user.save();\n \n-  // const token = user.createJWT();\n+  const token = user.createJWT();\n \n-  // res.status(StatusCodes.OK).json({ user, token, location: user.location });\n-  res.send('update User');\n+  res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n \n export { register, login, updateUser };\n"
+                },
+                {
+                    "date": 1683881189509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n   BadRequestError,\n   NotFoundError,\n   UnAuthenticatedError\n } from '../errors/index.js';\n-import { json } from 'express';\n \n const register = async (req, res) => {\n   const { name, email, password } = req.body;\n \n"
+                },
+                {
+                    "date": 1684642800353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,13 @@\n     throw new UnAuthenticatedError('Invalid Credentials');\n   }\n   const token = user.createJWT();\n   user.password = undefined;\n+\n+  const oneDay = 1000*60*60*24\n+  res.cookie('token', token, {\n+    httpOnly:true, expires:new Date(Date.now()+oneDay) \n+  })\n   res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n const updateUser = async (req, res) => {\n   const { email, name, lastName, location } = req.body;\n"
+                },
+                {
+                    "date": 1684642908870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n   const oneDay = 1000 * 60 * 60 * 24;\n   res.cookie('token', token, {\n     httpOnly: true,\n-    expires: new Date(Date.now() + oneDay)\n+    expires: new Date(Date.now() + oneDay), secure: process.env.NODE_ENV ==='production'\n   });\n   res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n const updateUser = async (req, res) => {\n"
+                },
+                {
+                    "date": 1684643665926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n import User from '../models/User.js';\n import { StatusCodes } from 'http-status-codes';\n import {\n   BadRequestError,\n-  NotFoundError,\n+\n   UnAuthenticatedError\n } from '../errors/index.js';\n \n+\n const register = async (req, res) => {\n   const { name, email, password } = req.body;\n \n   if (!name || !email || !password) {\n@@ -48,14 +49,9 @@\n   }\n   const token = user.createJWT();\n   user.password = undefined;\n \n-  const oneDay = 1000 * 60 * 60 * 24;\n-  res.cookie('token', token, {\n-    httpOnly: true,\n-    expires: new Date(Date.now() + oneDay),\n-    secure: process.env.NODE_ENV === 'production'\n-  });\n+ \n   res.status(StatusCodes.OK).json({ user, token, location: user.location });\n };\n const updateUser = async (req, res) => {\n   const { email, name, lastName, location } = req.body;\n"
+                }
+            ],
+            "date": 1683600956369,
+            "name": "Commit-0",
+            "content": "import User from '../models/User.js';\nimport { StatusCodes } from 'http-status-codes';\nimport {\n  BadRequestError,\n  NotFoundError,\n  UnAuthenticatedError\n} from '../errors/index.js';\nimport { json } from 'express';\n\nconst register = async (req, res) => {\n  const { name, email, password } = req.body;\n\n  if (!name || !email || !password) {\n    throw new BadRequestError('Please provide all values');\n  }\n\n  const userAlreadyExists = await User.findOne({ email });\n  if (userAlreadyExists) {\n    throw new BadRequestError('Email already in use');\n  }\n  const user = await User.create({ name, email, password });\n  const token = user.createJWT();\n  res.status(StatusCodes.CREATED).json({\n    user: {\n      email: user.email,\n      lastName: user.lastName,\n      location: user.location,\n      name: user.name\n    },\n    token,\n    location: user.location\n  });\n  // res.status(201);\n};\nconst login = async (req, res) => {\n  const { email, password } = req.body;\n  if (!email || !password) {\n    throw new BadRequestError('Please provide all values');\n  }\n  const user = await User.findOne({ email }).select('+password');\n  if (!user) {\n    throw new UnAuthenticatedError('Invalid Credentials');\n  }\n  console.log(user);\n\n  const isPasswordCorrect = await user.comparePassword(password);\n  if (!isPasswordCorrect) {\n    throw new UnAuthenticatedError('Invalid Credentials');\n  }\n  const token = user.createJWT();\n  user.password = undefined;\n  res.status(StatusCodes.OK).json({ user, token, location: user.location });\n};\nconst updateUser = (req, res) => {\n  const { email, name, lastName, location } = req.body;\n  if (!email || !name || !lastName || !location) {\n    throw new BadRequestError('Please provide all values');\n  }\n  res.send('update user');\n};\n\nexport { register, login, updateUser };\n"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "sourceFile": "server.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1683385760289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683385786407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n import errorHandlerMiddleware from './middleware/error-handler.js';\n \n app.use(express.json());\n console.log('HELLO');\n+console.log('HELLO');\n \n app.get('/', (req, res) => {\n   res.send('<h1>Welcome!</h1>');\n });\n"
+                },
+                {
+                    "date": 1683385801368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,8 @@\n import notFoundMiddleware from './middleware/not-found.js';\n import errorHandlerMiddleware from './middleware/error-handler.js';\n \n app.use(express.json());\n-console.log('HELLO');\n-console.log('HELLO');\n \n app.get('/', (req, res) => {\n   res.send('<h1>Welcome!</h1>');\n });\n"
+                },
+                {
+                    "date": 1683387258597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,14 +18,13 @@\n \n app.use(express.json());\n \n app.get('/', (req, res) => {\n-  res.send('<h1>Welcome!</h1>');\n-});\n-\n-app.get('/', (req, res) => {\n   res.send('Welcome!');\n });\n+app.get('/api/v1', (req, res) => {\n+  res.json({ msg: 'API' });\n+});\n \n app.use('/api/v1/auth', authRouter);\n app.use('/api/v1/jobs', jobsRouter);\n \n"
+                },
+                {
+                    "date": 1683498275285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n \n //middleware\n import notFoundMiddleware from './middleware/not-found.js';\n import errorHandlerMiddleware from './middleware/error-handler.js';\n+import authenticateUser from '../middleware/auth.js';\n \n if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));\n \n app.use(express.json());\n@@ -28,9 +29,9 @@\n   res.json({ msg: 'API' });\n });\n \n app.use('/api/v1/auth', authRouter);\n-app.use('/api/v1/jobs', jobsRouter);\n+app.use('/api/v1/jobs', authenticateUser, jobsRouter);\n \n app.use(notFoundMiddleware);\n app.use(errorHandlerMiddleware);\n \n"
+                },
+                {
+                    "date": 1683498307372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n   res.json({ msg: 'API' });\n });\n \n app.use('/api/v1/auth', authRouter);\n-app.use('/api/v1/jobs', authenticateUser, jobsRouter);\n+app.use('/api/v1/jobs',  jobsRouter);\n \n app.use(notFoundMiddleware);\n app.use(errorHandlerMiddleware);\n \n"
+                }
+            ],
+            "date": 1683385760289,
+            "name": "Commit-0",
+            "content": "import express from 'express';\nconst app = express();\nimport dotenv from 'dotenv';\ndotenv.config();\nimport 'express-async-errors';\nimport colors from 'colors';\n\n//db and authenticateUser\nimport connectDB from './db/connect.js';\n\n//routers\nimport authRouter from './routes/authRoutes.js';\nimport jobsRouter from './routes/jobsRoutes.js';\n\n//middleware\nimport notFoundMiddleware from './middleware/not-found.js';\nimport errorHandlerMiddleware from './middleware/error-handler.js';\n\napp.use(express.json());\nconsole.log('HELLO');\n\napp.get('/', (req, res) => {\n  res.send('<h1>Welcome!</h1>');\n});\n\napp.get('/', (req, res) => {\n  res.send('Welcome!');\n});\n\napp.use('/api/v1/auth', authRouter);\napp.use('/api/v1/jobs', jobsRouter);\n\napp.use(notFoundMiddleware);\napp.use(errorHandlerMiddleware);\n\nconst port = process.env.PORT || 5000;\n\nconst start = async () => {\n  try {\n    await connectDB(process.env.MONGO_URL);\n    app.listen(port, () => {\n      console.log(`SERVER IS LISTENING ON PORT ${port}...`.cyan.underline.bold);\n    });\n  } catch (error) {\n    console.log(error);\n  }\n};\n\nstart();\n"
+        }
+    ]
+}

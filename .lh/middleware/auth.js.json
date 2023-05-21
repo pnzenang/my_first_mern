@@ -1,0 +1,26 @@
+{
+    "sourceFile": "middleware/auth.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1683497932058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683497951283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n const auth = async (req, res, next) => {\n   console.log('authenticate user');\n   next();\n };\n+export default auth\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683499231357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,9 @@\n const auth = async (req, res, next) => {\n-  console.log('authenticate user');\n+\n+ const headers = req.headers\n+ const authHeader = req.headers.authorization\n+ console.log(headers);\n+ console.log(authHeader);\n   next();\n };\n export default auth;\n"
+                }
+            ],
+            "date": 1683497932058,
+            "name": "Commit-0",
+            "content": "const auth = async (req, res, next) => {\n console.log('authenticate user');\n next()\n}"
+        }
+    ]
+}

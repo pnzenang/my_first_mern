@@ -1,0 +1,18 @@
+{
+    "sourceFile": "1frontend/src/assets/wrappers/Job.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1684011082306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1684011082306,
+            "name": "Commit-0",
+            "content": "import styled from 'styled-components';\n\nconst Wrapper = styled.article`\n  background: var(--white);\n  border-radius: var(--borderRadius);\n  display: grid;\n  grid-template-rows: 1fr auto;\n  box-shadow: var(--shadow-2);\n\n  header {\n    padding: 1rem 1.5rem;\n    border-bottom: 1px solid var(--grey-100);\n    display: grid;\n    grid-template-columns: auto 1fr;\n    align-items: center;\n    h5 {\n      letter-spacing: 0;\n    }\n  }\n  .main-icon {\n    width: 60px;\n    height: 60px;\n    display: grid;\n    place-items: center;\n    background: var(--primary-500);\n    border-radius: var(--borderRadius);\n    font-size: 1.5rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    color: var(--white);\n    margin-right: 2rem;\n  }\n  .info {\n    h5 {\n      margin-bottom: 0.25rem;\n    }\n    p {\n      margin: 0;\n      text-transform: capitalize;\n      color: var(--grey-400);\n      letter-spacing: var(--letterSpacing);\n    }\n  }\n  .pending {\n    background: #fcefc7;\n    color: #e9b949;\n  }\n  .interview {\n    background: #e0e8f9;\n    color: #647acb;\n  }\n  .declined {\n    color: #d66a6a;\n    background: #ffeeee;\n  }\n  .content {\n    padding: 1rem 1.5rem;\n  }\n  .content-center {\n    display: grid;\n    grid-template-columns: 1fr;\n    row-gap: 0.5rem;\n    @media (min-width: 576px) {\n      grid-template-columns: 1fr 1fr;\n    }\n    @media (min-width: 992px) {\n      grid-template-columns: 1fr;\n    }\n    @media (min-width: 1120px) {\n      grid-template-columns: 1fr 1fr;\n    }\n  }\n\n  .status {\n    border-radius: var(--borderRadius);\n    text-transform: capitalize;\n    letter-spacing: var(--letterSpacing);\n    text-align: center;\n    width: 100px;\n    height: 30px;\n  }\n  footer {\n    margin-top: 1rem;\n  }\n  .edit-btn,\n  .delete-btn {\n    letter-spacing: var(--letterSpacing);\n    cursor: pointer;\n    height: 30px;\n  }\n  .edit-btn {\n    color: var(--green-dark);\n    background: var(--green-light);\n    margin-right: 0.5rem;\n  }\n  .delete-btn {\n    color: var(--red-dark);\n    background: var(--red-light);\n  }\n  &:hover .actions {\n    visibility: visible;\n  }\n`;\n\nexport default Wrapper;\n"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "sourceFile": "1frontend/src/components/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1683458742006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683948814734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,15 @@\n import Alert from './Alert';\n import Navbar from './Navbar';\n import SmallSidebar from './SmallSidebar';\n import BigSidebar from './BigSidebar';\n+import FormRowSelect from './FormRowSelect';\n \n-export { Logo, FormRow, Alert, Navbar, SmallSidebar, BigSidebar };\n+export {\n+  Logo,\n+  FormRow,\n+  Alert,\n+  Navbar,\n+  SmallSidebar,\n+  BigSidebar,\n+  FormRowSelect\n+};\n"
+                },
+                {
+                    "date": 1683975415061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,14 +4,17 @@\n import Navbar from './Navbar';\n import SmallSidebar from './SmallSidebar';\n import BigSidebar from './BigSidebar';\n import FormRowSelect from './FormRowSelect';\n-\n+import SearchContainer from './SearchContainer';\n+import JobsContainer from './JobsContainer';\n export {\n   Logo,\n   FormRow,\n   Alert,\n   Navbar,\n   SmallSidebar,\n   BigSidebar,\n-  FormRowSelect\n+  FormRowSelect,\n+  SearchContainer,\n+  JobsContainer\n };\n"
+                },
+                {
+                    "date": 1684289897830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import BigSidebar from './BigSidebar';\n import FormRowSelect from './FormRowSelect';\n import SearchContainer from './SearchContainer';\n import JobsContainer from './JobsContainer';\n+import StatsContainer from './StatsContainer';\n export {\n   Logo,\n   FormRow,\n   Alert,\n@@ -15,6 +16,7 @@\n   SmallSidebar,\n   BigSidebar,\n   FormRowSelect,\n   SearchContainer,\n-  JobsContainer\n+  JobsContainer,\n+  StatsContainer\n };\n"
+                },
+                {
+                    "date": 1684289936044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import FormRowSelect from './FormRowSelect';\n import SearchContainer from './SearchContainer';\n import JobsContainer from './JobsContainer';\n import StatsContainer from './StatsContainer';\n+import ChartsContainer from './ChartsContainer';\n export {\n   Logo,\n   FormRow,\n   Alert,\n@@ -17,6 +18,7 @@\n   BigSidebar,\n   FormRowSelect,\n   SearchContainer,\n   JobsContainer,\n-  StatsContainer\n+  StatsContainer,\n+  ChartsContainer\n };\n"
+                },
+                {
+                    "date": 1684290433204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,11 @@\n import SearchContainer from './SearchContainer';\n import JobsContainer from './JobsContainer';\n import StatsContainer from './StatsContainer';\n import ChartsContainer from './ChartsContainer';\n+import Loading from './Loading';\n export {\n+  Loading,\n   Logo,\n   FormRow,\n   Alert,\n   Navbar,\n"
+                },
+                {
+                    "date": 1684295040399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n import JobsContainer from './JobsContainer';\n import StatsContainer from './StatsContainer';\n import ChartsContainer from './ChartsContainer';\n import Loading from './Loading';\n+import StatItem from '../components'\n export {\n   Loading,\n   Logo,\n   FormRow,\n@@ -21,6 +22,7 @@\n   FormRowSelect,\n   SearchContainer,\n   JobsContainer,\n   StatsContainer,\n-  ChartsContainer\n+  ChartsContainer,\n+  StatItem\n };\n"
+                },
+                {
+                    "date": 1684295189868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import JobsContainer from './JobsContainer';\n import StatsContainer from './StatsContainer';\n import ChartsContainer from './ChartsContainer';\n import Loading from './Loading';\n-import StatItem from '../components';\n+import StatItem from './StatItem';\n export {\n   Loading,\n   Logo,\n   FormRow,\n"
+                }
+            ],
+            "date": 1683458742006,
+            "name": "Commit-0",
+            "content": "import Logo from './Logo';\nimport FormRow from './FormRow';\nimport Alert from './Alert';\nimport Navbar from './Navbar';\nimport SmallSidebar from './SmallSidebar';\nimport BigSidebar from './BigSidebar';\n\nexport { Logo, FormRow, Alert, Navbar, SmallSidebar, BigSidebar };\n"
+        }
+    ]
+}

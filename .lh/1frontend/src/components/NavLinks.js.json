@@ -1,0 +1,26 @@
+{
+    "sourceFile": "1frontend/src/components/NavLinks.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1683495864672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683495944356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import links from '../utils/links';\n import { NavLink } from 'react-router-dom';\n \n-const NavLinks = () => {\n+const NavLinks = ({toggleSidebar}) => {\n   return (\n     <div className='nav-links'>\n       {links.map((link) => {\n         const { text, path, id, icon } = link;\n"
+                },
+                {
+                    "date": 1683496048011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import links from '../utils/links';\n import { NavLink } from 'react-router-dom';\n \n-const NavLinks = ({toggleSidebar}) => {\n+const NavLinks = ({ toggleSidebar }) => {\n   return (\n     <div className='nav-links'>\n       {links.map((link) => {\n         const { text, path, id, icon } = link;\n"
+                }
+            ],
+            "date": 1683495864672,
+            "name": "Commit-0",
+            "content": "import links from '../utils/links';\nimport { NavLink } from 'react-router-dom';\n\nconst NavLinks = () => {\n  return (\n    <div className='nav-links'>\n      {links.map((link) => {\n        const { text, path, id, icon } = link;\n        return (\n          <NavLink\n            to={path}\n            key={id}\n            onClick={toggleSidebar}\n            className={({ isActive }) =>\n              isActive ? 'nav-link active' : 'nav-link'\n            }\n          >\n            <span className='icon'>{icon}</span>\n            {text}\n          </NavLink>\n        );\n      })}\n    </div>\n  );\n};\nexport default NavLinks;\n"
+        }
+    ]
+}

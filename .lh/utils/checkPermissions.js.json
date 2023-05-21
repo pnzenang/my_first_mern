@@ -1,0 +1,26 @@
+{
+    "sourceFile": "utils/checkPermissions.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1684027682636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684027688384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,6 @@\n-import { UnAuthenticatedError } from \"../errors/index.js\"\n+import { UnAuthenticatedError } from '../errors/index.js';\n \n const checkPermissions = (requestUser, resourceUserId) => {\n-  return (\n-    \n-  )\n-}\n\\ No newline at end of file\n-export default checkPermissions\n+  return;\n+};\n+export default checkPermissions;\n"
+                },
+                {
+                    "date": 1684028001667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { UnAuthenticatedError } from '../errors/index.js';\n \n const checkPermissions = (requestUser, resourceUserId) => {\n-  return;\n+  if (requestUser.userId === resourceUserId.toString()) return;\n+  throw new UnAuthenticatedError('Not authorized to access this route');\n };\n export default checkPermissions;\n"
+                }
+            ],
+            "date": 1684027682636,
+            "name": "Commit-0",
+            "content": "import { UnAuthenticatedError } from \"../errors/index.js\"\n\nconst checkPermissions = (requestUser, resourceUserId) => {\n  return (\n    \n  )\n}\nexport default checkPermissions"
+        }
+    ]
+}

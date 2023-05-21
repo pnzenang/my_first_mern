@@ -1,0 +1,122 @@
+{
+    "sourceFile": "1frontend/src/context/reducer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 26,
+            "patches": [
+                {
+                    "date": 1683463308712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683463335654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n   REGISTER_USER_SUCCESS,\n   REGISTER_USER_ERROR,\n   LOGIN_USER_BEGIN,\n   LOGIN_USER_SUCCESS,\n-  LOGIN_USER_ERROR\n+  LOGIN_USER_ERROR,\n+  TOGGLE_SIDEBAR\n } from './actions';\n \n const reducer = (state, action) => {\n   if (action.type === DISPLAY_ALERT) {\n@@ -77,9 +78,9 @@\n       alertType: 'danger',\n       alertText: action.payload.msg\n     };\n   }\n-  if (action.type === LOGIN_USER_ERROR) {\n+  if (action.type === TOGGLE_SIDEBAR) {\n     return {\n       ...state,\n       showSidebar: !state.showSidebar\n     };\n"
+                },
+                {
+                    "date": 1683465643520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,12 @@\n   REGISTER_USER_ERROR,\n   LOGIN_USER_BEGIN,\n   LOGIN_USER_SUCCESS,\n   LOGIN_USER_ERROR,\n-  TOGGLE_SIDEBAR\n+  TOGGLE_SIDEBAR,\n+  LOGOUT_USER\n } from './actions';\n+import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n   if (action.type === DISPLAY_ALERT) {\n     return {\n@@ -84,8 +86,17 @@\n       ...state,\n       showSidebar: !state.showSidebar\n     };\n   }\n+  if (action.type === LOGOUT_USER) {\n+    return {\n+      ...initialState,\n+      user: null,\n+      token: null,\n+      userLocation: '',\n+      jobLocation: ''\n+    };\n+  }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683877648416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,12 @@\n   LOGIN_USER_BEGIN,\n   LOGIN_USER_SUCCESS,\n   LOGIN_USER_ERROR,\n   TOGGLE_SIDEBAR,\n-  LOGOUT_USER\n+  LOGOUT_USER,\n+  UPDATE_USER_BEGIN,\n+  UPDATE_USER_SUCCESS,\n+  UPDATE_USER_ERROR\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                },
+                {
+                    "date": 1683878296253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,8 +98,34 @@\n       userLocation: '',\n       jobLocation: ''\n     };\n   }\n+\n+  if (action.type === UPDATE_USER_BEGIN) {\n+    return { ...state, isLoading: true };\n+  }\n+  if (action.type === UPDATE_USER_SUCCESS) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      token: action.payload.token,\n+      user: action.payload.user,\n+      userLocation: action.payload.location,\n+      jobLocation: action.payload.location,\n+      showAlert: true,\n+      alertType: 'success',\n+      alertText: 'User Profile Updated!'\n+    };\n+  }\n+  if (action.type === UPDATE_USER_ERROR) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      showAlert: true,\n+      alertType: 'danger',\n+      alertText: action.payload.msg\n+    };\n+  }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683965955341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,10 @@\n   TOGGLE_SIDEBAR,\n   LOGOUT_USER,\n   UPDATE_USER_BEGIN,\n   UPDATE_USER_SUCCESS,\n-  UPDATE_USER_ERROR\n+  UPDATE_USER_ERROR,\n+  HANDLE_CHANGE\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                },
+                {
+                    "date": 1683966718203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,8 +125,15 @@\n       alertType: 'danger',\n       alertText: action.payload.msg\n     };\n   }\n+  if (action.type === HANDLE_CHANGE) {\n+    return {\n+      ...state,\n+      [action.payload.name]: action.payload.value\n+    };\n+  }\n+\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683967298024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n   LOGOUT_USER,\n   UPDATE_USER_BEGIN,\n   UPDATE_USER_SUCCESS,\n   UPDATE_USER_ERROR,\n-  HANDLE_CHANGE\n+  HANDLE_CHANGE,\n+  CLEAR_CHANGE\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                },
+                {
+                    "date": 1683967972748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   UPDATE_USER_BEGIN,\n   UPDATE_USER_SUCCESS,\n   UPDATE_USER_ERROR,\n   HANDLE_CHANGE,\n-  CLEAR_CHANGE\n+  CLEAR_VALUES\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n@@ -133,8 +133,24 @@\n       [action.payload.name]: action.payload.value\n     };\n   }\n \n+  if (action.type === CLEAR_VALUES) {\n+    const initialState = {\n+      isEditing: false,\n+      editJobId: '',\n+      position: '',\n+      company: '',\n+      jobLocation: state.userLocation || '',\n+      jobType: 'full-time',\n+      status: 'pending'\n+    };\n+    return {\n+      ...state,\n+      [action.payload.name]: action.payload.value\n+    };\n+  }\n+\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683968004782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -145,9 +145,9 @@\n       status: 'pending'\n     };\n     return {\n       ...state,\n-      [action.payload.name]: action.payload.value\n+      ...initialState\n     };\n   }\n \n   throw new Error(`no such action: ${action.type}`);\n"
+                },
+                {
+                    "date": 1683969719298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,12 @@\n   UPDATE_USER_BEGIN,\n   UPDATE_USER_SUCCESS,\n   UPDATE_USER_ERROR,\n   HANDLE_CHANGE,\n-  CLEAR_VALUES\n+  CLEAR_VALUES,\n+  CREATE_JOB_BEGIN,\n+  CREATE_JOB_SUCCESS,\n+  CREATE_JOB_ERROR\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                },
+                {
+                    "date": 1683970750975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -152,8 +152,30 @@\n       ...initialState\n     };\n   }\n \n+  if (action.type === CREATE_JOB_BEGIN) {\n+    return { ...state, isLoading: true };\n+  }\n+  if (action.type === CREATE_JOB_SUCCESS) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      showAlert: true,\n+      alertType: 'success',\n+      alertText: 'New Job Created'\n+    };\n+  }\n+  if (action.type === CREATE_JOB_ERROR) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      showAlert: true,\n+      alertType: 'danger',\n+      alertText: action.payload.msg\n+    };\n+  }\n+\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683973393945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,11 @@\n   HANDLE_CHANGE,\n   CLEAR_VALUES,\n   CREATE_JOB_BEGIN,\n   CREATE_JOB_SUCCESS,\n-  CREATE_JOB_ERROR\n+  CREATE_JOB_ERROR,\n+  GET_JOBS_BEGIN,\n+  GET_JOBS_SUCCESS\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                },
+                {
+                    "date": 1683974030446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,9 +175,11 @@\n       alertType: 'danger',\n       alertText: action.payload.msg\n     };\n   }\n-\n+  if (action.type === GET_JOBS_BEGIN) {\n+    return { ...state, isLoading: true, showAlert: false };\n+  }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683974243142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,8 +178,17 @@\n   }\n   if (action.type === GET_JOBS_BEGIN) {\n     return { ...state, isLoading: true, showAlert: false };\n   }\n+  if (action.type === GET_JOBS_SUCCESS) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      jobs: action.payload.jobs,\n+      totalJobs: action.payload.totalJobs,\n+      numOfPages: action.payload.numOfPages\n+    };\n+  }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1683974347931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import React, { useReducer, useContext, useEffect } from 'react';\n import {\n   DISPLAY_ALERT,\n   CLEAR_ALERT,\n   REGISTER_USER_BEGIN,\n"
+                },
+                {
+                    "date": 1684013441597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,10 @@\n   CREATE_JOB_BEGIN,\n   CREATE_JOB_SUCCESS,\n   CREATE_JOB_ERROR,\n   GET_JOBS_BEGIN,\n-  GET_JOBS_SUCCESS\n+  GET_JOBS_SUCCESS,\n+  SET_EDIT_JOB\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n@@ -188,8 +189,22 @@\n       totalJobs: action.payload.totalJobs,\n       numOfPages: action.payload.numOfPages\n     };\n   }\n+  if (action.type === SET_EDIT_JOB) {\n+    const job = state.jobs.find((job) => job._id === action.payload.id);\n+    const { id, position, company, jobLocation, jobType, status } = job;\n+    return {\n+      ...state,\n+      isEditing: true,\n+      editJobId: _id,\n+      position,\n+      company,\n+      jobLocation,\n+      jobType,\n+      status\n+    };\n+  }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1684013461424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n     };\n   }\n   if (action.type === SET_EDIT_JOB) {\n     const job = state.jobs.find((job) => job._id === action.payload.id);\n-    const { id, position, company, jobLocation, jobType, status } = job;\n+    const { _id, position, company, jobLocation, jobType, status } = job;\n     return {\n       ...state,\n       isEditing: true,\n       editJobId: _id,\n"
+                },
+                {
+                    "date": 1684031925044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n   CREATE_JOB_SUCCESS,\n   CREATE_JOB_ERROR,\n   GET_JOBS_BEGIN,\n   GET_JOBS_SUCCESS,\n-  SET_EDIT_JOB\n+  SET_EDIT_JOB,\n+  DELETE_JOB_BEGIN\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n@@ -203,8 +204,11 @@\n       jobType,\n       status\n     };\n   }\n+\n+  if (action.type === DELETE_JOB_BEGIN) {\n+  }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1684031986438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -206,8 +206,9 @@\n     };\n   }\n \n   if (action.type === DELETE_JOB_BEGIN) {\n+    return { ...state, isLoading: true };\n   }\n   throw new Error(`no such action: ${action.type}`);\n };\n \n"
+                },
+                {
+                    "date": 1684033108065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,12 @@\n   CREATE_JOB_ERROR,\n   GET_JOBS_BEGIN,\n   GET_JOBS_SUCCESS,\n   SET_EDIT_JOB,\n-  DELETE_JOB_BEGIN\n+  DELETE_JOB_BEGIN,\n+  EDIT_JOB_BEGIN,\n+  EDIT_JOB_SUCCESS,\n+  EDIT_JOB_ERROR\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                },
+                {
+                    "date": 1684034379391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -211,8 +211,34 @@\n \n   if (action.type === DELETE_JOB_BEGIN) {\n     return { ...state, isLoading: true };\n   }\n+\n+  if (action.type === EDIT_JOB_BEGIN) {\n+    return {\n+      ...state,\n+      isLoading: true\n+    };\n+  }\n+  if (action.type === EDIT_JOB_SUCCESS) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      showAlert: true,\n+      alertType: 'success',\n+      alertText: 'Job Updated'\n+    };\n+  }\n+  if (action.type === EDIT_JOB_SUCCESS) {\n+    return {\n+      ...state,\n+      isLoading: false,\n+      showAlert: true,\n+      alertType: 'danger',\n+      alertText: action.payload.msg\n+    };\n+  }\n+\n   throw new Error(`no such action: ${action.type}`);\n };\n \n export default reducer;\n"
+                },
+                {
+                    "date": 1684034718436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -227,9 +227,9 @@\n       alertType: 'success',\n       alertText: 'Job Updated'\n     };\n   }\n-  if (action.type === EDIT_JOB_SUCCESS) {\n+  if (action.type === EDIT_JOB_ERROR) {\n     return {\n       ...state,\n       isLoading: false,\n       showAlert: true,\n"
+                },
+                {
+                    "date": 1684037747455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -224,9 +224,9 @@\n       ...state,\n       isLoading: false,\n       showAlert: true,\n       alertType: 'success',\n-      alertText: 'Job Updated'\n+      alertText: 'Job Updated!'\n     };\n   }\n   if (action.type === EDIT_JOB_ERROR) {\n     return {\n"
+                },
+                {
+                    "date": 1684285032302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n   SET_EDIT_JOB,\n   DELETE_JOB_BEGIN,\n   EDIT_JOB_BEGIN,\n   EDIT_JOB_SUCCESS,\n-  EDIT_JOB_ERROR\n+  EDIT_JOB_ERROR,\n+  SHOW_STATS_BEGIN,\n+  SHOW_STATS_SUCCESS\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n@@ -236,8 +238,23 @@\n       alertType: 'danger',\n       alertText: action.payload.msg\n     };\n   }\n+   if (action.type === SHOW_STATS_BEGIN) {\n+     return {\n+       ...state,\n+       isLoading: true\n+     };\n+   }\n+   if (action.type === SHOW_STATS_SUCCESS) {\n+     return {\n+       ...state,\n+       isLoading: false,\n+       showAlert: true,\n+       alertType: 'success',\n+       alertText: 'Job Updated!'\n+     };\n+   }\n \n   throw new Error(`no such action: ${action.type}`);\n };\n \n"
+                },
+                {
+                    "date": 1684285169859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -241,18 +241,18 @@\n   }\n   if (action.type === SHOW_STATS_BEGIN) {\n     return {\n       ...state,\n-      isLoading: true\n+      isLoading: true,\n+      showAlert: false\n     };\n   }\n   if (action.type === SHOW_STATS_SUCCESS) {\n     return {\n       ...state,\n       isLoading: false,\n-      showAlert: true,\n-      alertType: 'success',\n-      alertText: 'Job Updated!'\n+      stats: action.payload.stats,\n+      monthlyApplications: action.payload.monthlyApplications\n     };\n   }\n \n   throw new Error(`no such action: ${action.type}`);\n"
+                },
+                {
+                    "date": 1684467716255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,10 @@\n   EDIT_JOB_BEGIN,\n   EDIT_JOB_SUCCESS,\n   EDIT_JOB_ERROR,\n   SHOW_STATS_BEGIN,\n-  SHOW_STATS_SUCCESS\n+  SHOW_STATS_SUCCESS,\n+  CLEAR_FILTERS\n } from './actions';\n import { initialState } from './appContext';\n \n const reducer = (state, action) => {\n"
+                }
+            ],
+            "date": 1683463308712,
+            "name": "Commit-0",
+            "content": "import {\n  DISPLAY_ALERT,\n  CLEAR_ALERT,\n  REGISTER_USER_BEGIN,\n  REGISTER_USER_SUCCESS,\n  REGISTER_USER_ERROR,\n  LOGIN_USER_BEGIN,\n  LOGIN_USER_SUCCESS,\n  LOGIN_USER_ERROR\n} from './actions';\n\nconst reducer = (state, action) => {\n  if (action.type === DISPLAY_ALERT) {\n    return {\n      ...state,\n      showAlert: true,\n      alertType: 'danger',\n      alertText: 'Please provide all values!'\n    };\n  }\n\n  if (action.type === CLEAR_ALERT) {\n    return {\n      ...state,\n      showAlert: false,\n      alertType: '',\n      alertText: ''\n    };\n  }\n\n  if (action.type === REGISTER_USER_BEGIN) {\n    return { ...state, isLoading: true };\n  }\n  if (action.type === REGISTER_USER_SUCCESS) {\n    return {\n      ...state,\n      isLoading: false,\n      token: action.payload.token,\n      user: action.payload.user,\n      userLocation: action.payload.location,\n      jobLocation: action.payload.location,\n      showAlert: true,\n      alertType: 'success',\n      alertText: 'User Created! Redirected...'\n    };\n  }\n  if (action.type === REGISTER_USER_ERROR) {\n    return {\n      ...state,\n      isLoading: false,\n      showAlert: true,\n      alertType: 'danger',\n      alertText: action.payload.msg\n    };\n  }\n  if (action.type === LOGIN_USER_BEGIN) {\n    return { ...state, isLoading: true };\n  }\n  if (action.type === LOGIN_USER_SUCCESS) {\n    return {\n      ...state,\n      isLoading: false,\n      token: action.payload.token,\n      user: action.payload.user,\n      userLocation: action.payload.location,\n      jobLocation: action.payload.location,\n      showAlert: true,\n      alertType: 'success',\n      alertText: 'Login Successful! Redirected...'\n    };\n  }\n  if (action.type === LOGIN_USER_ERROR) {\n    return {\n      ...state,\n      isLoading: false,\n      showAlert: true,\n      alertType: 'danger',\n      alertText: action.payload.msg\n    };\n  }\n  if (action.type === LOGIN_USER_ERROR) {\n    return {\n      ...state,\n      showSidebar: !state.showSidebar\n    };\n  }\n  throw new Error(`no such action: ${action.type}`);\n};\n\nexport default reducer;\n"
+        }
+    ]
+}

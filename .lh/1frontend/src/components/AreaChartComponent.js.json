@@ -1,0 +1,86 @@
+{
+    "sourceFile": "1frontend/src/components/AreaChartComponent.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1684417642829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684417716385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,14 @@\n+import {\n+  BarChart,\n+  Bar,\n+  XAxis,\n+  YAxis,\n+  CartesianGrid,\n+  Tooltip,\n+  ResponsiveContainer\n+} from 'recharts';\n+\n const AreaChartComponent = () => {\n   return <h2>Area Chart</h2>;\n };\n export default AreaChartComponent;\n"
+                },
+                {
+                    "date": 1684417982103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import {\n-  BarChart,\n+  AreaChart,\n   Bar,\n   XAxis,\n   YAxis,\n   CartesianGrid,\n@@ -8,7 +8,17 @@\n   ResponsiveContainer\n } from 'recharts';\n \n const AreaChartComponent = () => {\n-  return <h2>Area Chart</h2>;\n+  return (\n+    <ResponsiveContainer width='100%' height={300}>\n+      <AreaChart data={data} margin={{ top: 50 }}>\n+        <CartesianGrid strokeDasharray='3 3' />\n+        <XAxis dataKey='date' />\n+        <YAxis allowDecimals={false} />\n+        <Tooltip />\n+        <Bar dataKey='count' fill='#2cb1bc' barSize={50} />\n+      </AreaChart>\n+    </ResponsiveContainer>\n+  );\n };\n export default AreaChartComponent;\n"
+                },
+                {
+                    "date": 1684418122923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   Tooltip,\n   ResponsiveContainer\n } from 'recharts';\n \n-const AreaChartComponent = () => {\n+const AreaChartComponent = ({ data }) => {\n   return (\n     <ResponsiveContainer width='100%' height={300}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n"
+                },
+                {
+                    "date": 1684418340622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n-        <Bar dataKey='count' fill='#2cb1bc' barSize={50} />\n+        <Area dataKey='count' fill='#2cb1bc' barSize={50} />\n       </AreaChart>\n     </ResponsiveContainer>\n   );\n };\n"
+                },
+                {
+                    "date": 1684418364679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import {\n   AreaChart,\n-  Bar,\n+  Area,\n   XAxis,\n   YAxis,\n   CartesianGrid,\n   Tooltip,\n"
+                },
+                {
+                    "date": 1684418699043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n-        <Area dataKey='count' fill='#2cb1bc' barSize={50} />\n+        <Area dataKey='count' fill='#bef8fd' barSize={50} />\n       </AreaChart>\n     </ResponsiveContainer>\n   );\n };\n"
+                },
+                {
+                    "date": 1684418783118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n-        <Area dataKey='count' fill='#bef8fd' barSize={50} />\n+        <Area dataKey='count' fill='#bef8fd' />\n       </AreaChart>\n     </ResponsiveContainer>\n   );\n };\n"
+                },
+                {
+                    "date": 1684418874413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n-        <Area dataKey='count' fill='#bef8fd' />\n+        <Area type='monotone' dataKey='count' fill='#bef8fd' />\n       </AreaChart>\n     </ResponsiveContainer>\n   );\n };\n"
+                },
+                {
+                    "date": 1684419118789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n-        <Area type='monotone' dataKey='count' fill='#bef8fd' />\n+        <Area type='monotone' stroke='#2cb1bc' dataKey='count' fill='#bef8fd' />\n       </AreaChart>\n     </ResponsiveContainer>\n   );\n };\n"
+                },
+                {
+                    "date": 1684460383499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \n const AreaChartComponent = ({ data }) => {\n   return (\n     <ResponsiveContainer width='100%' height={300}>\n-      <AreaChart data={data} margin={{ top: 50 }}>\n+      <AreaChart data={data} margin={{ top: 100 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n"
+                },
+                {
+                    "date": 1684460406542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n } from 'recharts';\n \n const AreaChartComponent = ({ data }) => {\n   return (\n-    <ResponsiveContainer width='100%' height={300}>\n-      <AreaChart data={data} margin={{ top: 100 }}>\n+    <ResponsiveContainer width='100%' height={500}>\n+      <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n         <Tooltip />\n"
+                },
+                {
+                    "date": 1684460417737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n } from 'recharts';\n \n const AreaChartComponent = ({ data }) => {\n   return (\n-    <ResponsiveContainer width='100%' height={500}>\n+    <ResponsiveContainer width='100%' height={300}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n"
+                },
+                {
+                    "date": 1684460429553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n } from 'recharts';\n \n const AreaChartComponent = ({ data }) => {\n   return (\n-    <ResponsiveContainer width='100%' height={300}>\n+    <ResponsiveContainer width='100%' height={1000}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n"
+                },
+                {
+                    "date": 1684460490262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n } from 'recharts';\n \n const AreaChartComponent = ({ data }) => {\n   return (\n-    <ResponsiveContainer width='100%' height={1000}>\n+    <ResponsiveContainer width='100%' height={300}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n"
+                },
+                {
+                    "date": 1684460603486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <ResponsiveContainer width='100%' height={300}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n-        <YAxis allowDecimals={false} />\n+        <YAxis allowDecimals={true} />\n         <Tooltip />\n         <Area type='monotone' stroke='#2cb1bc' dataKey='count' fill='#bef8fd' />\n       </AreaChart>\n     </ResponsiveContainer>\n"
+                },
+                {
+                    "date": 1684460614640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <ResponsiveContainer width='100%' height={300}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n-        <YAxis allowDecimals={true} />\n+        <YAxis allowDecimals={false} />\n         <Tooltip />\n         <Area type='monotone' stroke='#2cb1bc' dataKey='count' fill='#bef8fd' />\n       </AreaChart>\n     </ResponsiveContainer>\n"
+                },
+                {
+                    "date": 1684460728422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n } from 'recharts';\n \n const AreaChartComponent = ({ data }) => {\n   return (\n-    <ResponsiveContainer width='100%' height={300}>\n+    <ResponsiveContainer width='100%' height={500}>\n       <AreaChart data={data} margin={{ top: 50 }}>\n         <CartesianGrid strokeDasharray='3 3' />\n         <XAxis dataKey='date' />\n         <YAxis allowDecimals={false} />\n"
+                }
+            ],
+            "date": 1684417642829,
+            "name": "Commit-0",
+            "content": "const AreaChartComponent = () => {\n  return <h2>Area Chart</h2>;\n};\nexport default AreaChartComponent;\n"
+        }
+    ]
+}

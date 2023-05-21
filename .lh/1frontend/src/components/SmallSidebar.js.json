@@ -1,0 +1,38 @@
+{
+    "sourceFile": "1frontend/src/components/SmallSidebar.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1683458519823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683458532434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n import Wrapper from '../assets/wrappers/SmallSidebar';\n const SmallSidebar = () => {\n-  return <div>SmallSidebar</div>;\n+  return <h1>SmallSidebar</h1>;\n };\n export default SmallSidebar;\n"
+                },
+                {
+                    "date": 1683459328027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,9 @@\n import Wrapper from '../assets/wrappers/SmallSidebar';\n const SmallSidebar = () => {\n-  return <h1>SmallSidebar</h1>;\n+  return (\n+    <Wrapper>\n+      <h1>SmallSidebar</h1>;\n+    </Wrapper>\n+  );\n };\n export default SmallSidebar;\n"
+                },
+                {
+                    "date": 1683468394130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,20 @@\n import Wrapper from '../assets/wrappers/SmallSidebar';\n+import { FaTimes } from 'react-icons/fa';\n+import { useAppContext } from '../context/appContext';\n+import links from '../utils/links';\n+import { NavLink } from 'react-router-dom'\n+import {Logo} from './'\n const SmallSidebar = () => {\n   return (\n     <Wrapper>\n-      <h1>SmallSidebar</h1>;\n+      <div className=\"sidebar-container show-sidebar\">\n+        <div className=\"content\">\n+          <button type='button' className=\"close-btn\" onClick={()=>{console.log('toggle sidebar')}}>\n+            <FaTimes/>\n+          </button>\n+        </div>\n+      </div>\n     </Wrapper>\n   );\n };\n export default SmallSidebar;\n"
+                },
+                {
+                    "date": 1683468455718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,11 @@\n             }}\n           >\n             <FaTimes />\n           </button>\n+          <header>\n+            <Logo/>\n+          </header>\n         </div>\n       </div>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683468686824,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,11 @@\n           </button>\n           <header>\n             <Logo />\n           </header>\n+          <div className=\"nav-links\">\n+            nav-links\n+          </div>\n         </div>\n       </div>\n     </Wrapper>\n   );\n"
+                }
+            ],
+            "date": 1683458519823,
+            "name": "Commit-0",
+            "content": "import Wrapper from '../assets/wrappers/SmallSidebar';\nconst SmallSidebar = () => {\n  return <div>SmallSidebar</div>;\n};\nexport default SmallSidebar;\n"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "sourceFile": "1frontend/src/components/SearchContainer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1683975107448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683975212813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const SearchContainer = () => {\n-  return <div>SearchContainer</div>;\n+  return <h1>SearchContainer</h1>;\n };\n export default SearchContainer;\n"
+                },
+                {
+                    "date": 1684464989455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,9 @@\n+import Wrapper from '../assets/wrappers/SearchContainer';\n+import { FormRow, FormRowSelect } from '../components'\n+import { useAppContext } from '../context/appContext';\n+\n+\n const SearchContainer = () => {\n   return <h1>SearchContainer</h1>;\n };\n export default SearchContainer;\n"
+                },
+                {
+                    "date": 1684465251501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,8 @@\n import { FormRow, FormRowSelect } from '../components';\n import { useAppContext } from '../context/appContext';\n \n const SearchContainer = () => {\n+  const {isLoading, search, searchStatus, searchType, sort, sortOptions, handleChange, clearFilters, jobTypeOptions, statusOptions} = useAppContext()\n   return <h1>SearchContainer</h1>;\n };\n export default SearchContainer;\n"
+                },
+                {
+                    "date": 1684465709215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,7 +14,10 @@\n     clearFilters,\n     jobTypeOptions,\n     statusOptions\n   } = useAppContext();\n-  return <h1>SearchContainer</h1>;\n+  const handleSearch = (e) => {\n+    console.log(e.target.name);\n+  }\n+  return <Wrapper><form className='form'><h4>search form</h4><div className=\"form-center\"></div></form></Wrapper>;\n };\n export default SearchContainer;\n"
+                }
+            ],
+            "date": 1683975107448,
+            "name": "Commit-0",
+            "content": "const SearchContainer = () => {\n  return <div>SearchContainer</div>;\n};\nexport default SearchContainer;\n"
+        }
+    ]
+}

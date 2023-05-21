@@ -1,0 +1,26 @@
+{
+    "sourceFile": "1frontend/src/utils/links.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1683467007778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683467129351,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,13 @@\n import { IoBarChartSharp } from 'react-icons/io5';\n import { MdQueryStats } from 'react-icons/md';\n import { FaWpforms } from 'react-icons/fa';\n import { ImProfile } from 'react-icons/im';\n+\n+const links = [\n+ {\n+  id: 1,\n+  text: 'stats',\n+  path: '/',\n+  icon: <IoBarChartSharp/>\n+ }\n+]\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683467336499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,24 @@\n     id: 1,\n     text: 'stats',\n     path: '/',\n     icon: <IoBarChartSharp />\n-  }\n+  },\n+  {\n+    id: 1,\n+    text: 'all jobs',\n+    path: 'all-jobs',\n+    icon: <IoBarChartSharp />\n+  },\n+  {\n+    id: 1,\n+    text: 'stats',\n+    path: '/',\n+    icon: <IoBarChartSharp />\n+  },\n+  {\n+    id: 1,\n+    text: 'stats',\n+    path: '/',\n+    icon: <IoBarChartSharp />\n+  },\n ];\n"
+                }
+            ],
+            "date": 1683467007778,
+            "name": "Commit-0",
+            "content": "import {IoBarChartSharp} from 'react-icons/io5'\nimport {MdQueryStats} from 'react-icons/md'\nimport {FaWpforms} from 'react-icons/fa'\nimport {ImProfile} from 'react-icons/im'"
+        }
+    ]
+}

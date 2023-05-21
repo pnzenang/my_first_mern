@@ -1,0 +1,26 @@
+{
+    "sourceFile": "routes/authRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1683498079575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683498116123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n import { register, login, updateUser } from '../controllers/authController.js';\n import authenticateUser from '../middleware/auth.js';\n router.route('/register').post(register);\n router.route('/login').post(login);\n-router.route('/updateUser').patch(updateUser);\n+router.route('/updateUser').patch(authenticateUser,  updateUser);\n \n export default router;\n"
+                },
+                {
+                    "date": 1684637427162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import express from 'express';\n const router = express.Router();\n \n+import rateLimiter from express-rate-limit\n+\n+\n import { register, login, updateUser } from '../controllers/authController.js';\n import authenticateUser from '../middleware/auth.js';\n router.route('/register').post(register);\n router.route('/login').post(login);\n"
+                }
+            ],
+            "date": 1683498079575,
+            "name": "Commit-0",
+            "content": "import express from 'express';\nconst router = express.Router();\n\nimport { register, login, updateUser } from '../controllers/authController.js';\nimport authenticateUser from '../middleware/auth.js'\nrouter.route('/register').post(register);\nrouter.route('/login').post(login);\nrouter.route('/updateUser').patch(updateUser);\n\nexport default router;\n"
+        }
+    ]
+}

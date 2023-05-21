@@ -1,0 +1,102 @@
+{
+    "sourceFile": "1frontend/src/components/Navbar.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 21,
+            "patches": [
+                {
+                    "date": 1683458111169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683458370507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import Wrapper from '../assets/wrappers/Navbar';\n+\n const Navbar = () => {\n   return <h1>Navbar</h1>;\n };\n export default Navbar;\n"
+                },
+                {
+                    "date": 1683459292762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n import Wrapper from '../assets/wrappers/Navbar';\n \n const Navbar = () => {\n-  return <h1>Navbar</h1>;\n+  return (\n+    <Wrapper>\n+      <h1>Navbar</h1>;\n+    </Wrapper>\n+  );\n };\n export default Navbar;\n"
+                },
+                {
+                    "date": 1683460608294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import Wrapper from '../assets/wrappers/Navbar';\n-\n+import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa';\n const Navbar = () => {\n   return (\n     <Wrapper>\n       <h1>Navbar</h1>;\n"
+                },
+                {
+                    "date": 1683460647044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n import Wrapper from '../assets/wrappers/Navbar';\n import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa';\n+import { useAppContext } from '../context/appContext';\n+import Logo from './Logo';\n+\n const Navbar = () => {\n   return (\n     <Wrapper>\n       <h1>Navbar</h1>;\n"
+                },
+                {
+                    "date": 1683460763600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,14 @@\n \n const Navbar = () => {\n   return (\n     <Wrapper>\n-      <h1>Navbar</h1>;\n+      <div className='nav-center'>\n+        <div\n+          className='toggle-btn'\n+          onClick={() => console.log('toggle sidebar ')}\n+        ></div>\n+      </div>\n     </Wrapper>\n   );\n };\n export default Navbar;\n"
+                },
+                {
+                    "date": 1683460811762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,12 @@\n const Navbar = () => {\n   return (\n     <Wrapper>\n       <div className='nav-center'>\n-        <div\n+        <button\n           className='toggle-btn'\n           onClick={() => console.log('toggle sidebar ')}\n-        ></div>\n+        ></button>\n       </div>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683460849179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,11 @@\n       <div className='nav-center'>\n         <button\n           className='toggle-btn'\n           onClick={() => console.log('toggle sidebar ')}\n-        ></button>\n+        >\n+          <FaAlignLeft />\n+        </button>\n       </div>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683461023079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,11 @@\n           onClick={() => console.log('toggle sidebar ')}\n         >\n           <FaAlignLeft />\n         </button>\n+        <div>\n+          <Logo />\n+        </div>\n       </div>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683461112918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Wrapper from '../assets/wrappers/Navbar';\n import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa';\n import { useAppContext } from '../context/appContext';\n-import Logo from './Logo';\n+import { Logo } from '../components';\n \n const Navbar = () => {\n   return (\n     <Wrapper>\n"
+                },
+                {
+                    "date": 1683461153122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n           <FaAlignLeft />\n         </button>\n         <div>\n           <Logo />\n+          <h3 className='logo-text'>dashboard</h3>\n         </div>\n       </div>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683461310093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,15 @@\n         <div>\n           <Logo />\n           <h3 className='logo-text'>dashboard</h3>\n         </div>\n+        <div className='btn-container'>\n+          <button\n+            type='button'\n+            className='btn'\n+            onClick={() => console.log('show/hide dropdown')}\n+          ></button>\n+        </div>\n       </div>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1683461362205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,13 @@\n           <button\n             type='button'\n             className='btn'\n             onClick={() => console.log('show/hide dropdown')}\n-          ></button>\n+          >\n+            <FaUserCircle />\n+            John\n+            <FaCaretDown />\n+          </button>\n         </div>\n       </div>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683461453265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n             <FaUserCircle />\n             John\n             <FaCaretDown />\n           </button>\n+          <div className='dropdown show-dropdown'>logout</div>\n         </div>\n       </div>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683461817122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,17 @@\n             <FaUserCircle />\n             John\n             <FaCaretDown />\n           </button>\n-          <div className='dropdown show-dropdown'>logout</div>\n+          <div className='dropdown show-dropdown'>\n+            <button\n+              type='button'\n+              className='dropdown-btn'\n+              onClick={() => console.log('logout user')}\n+            >\n+              logout\n+            </button>\n+          </div>\n         </div>\n       </div>\n     </Wrapper>\n   );\n"
+                },
+                {
+                    "date": 1683463503529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { useAppContext } from '../context/appContext';\n import { Logo } from '../components';\n \n const Navbar = () => {\n+  const { toggleSidebar } = useAppContext();\n   return (\n     <Wrapper>\n       <div className='nav-center'>\n         <button\n"
+                },
+                {
+                    "date": 1683463543990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,9 @@\n   const { toggleSidebar } = useAppContext();\n   return (\n     <Wrapper>\n       <div className='nav-center'>\n-        <button\n-          className='toggle-btn'\n-          onClick={() => console.log('toggle sidebar ')}\n-        >\n+        <button className='toggle-btn' onClick={toggleSidebar}>\n           <FaAlignLeft />\n         </button>\n         <div>\n           <Logo />\n"
+                },
+                {
+                    "date": 1683463821606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import Wrapper from '../assets/wrappers/Navbar';\n import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa';\n import { useAppContext } from '../context/appContext';\n import { Logo } from '../components';\n+import { useState } from 'react';\n \n const Navbar = () => {\n+  const [showLogout, setShowLogout] = useState(false);\n   const { toggleSidebar } = useAppContext();\n   return (\n     <Wrapper>\n       <div className='nav-center'>\n"
+                },
+                {
+                    "date": 1683464016360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             <FaUserCircle />\n             John\n             <FaCaretDown />\n           </button>\n-          <div className='dropdown show-dropdown'>\n+          <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>\n             <button\n               type='button'\n               className='dropdown-btn'\n               onClick={() => console.log('logout user')}\n"
+                },
+                {
+                    "date": 1683464107856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         <div className='btn-container'>\n           <button\n             type='button'\n             className='btn'\n-            onClick={() => console.log('show/hide dropdown')}\n+            onClick={() => setShowLogout(!showLogout)}\n           >\n             <FaUserCircle />\n             John\n             <FaCaretDown />\n"
+                },
+                {
+                    "date": 1683465702480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { useState } from 'react';\n \n const Navbar = () => {\n   const [showLogout, setShowLogout] = useState(false);\n-  const { toggleSidebar } = useAppContext();\n+  const { toggleSidebar, logoutUser, user } = useAppContext();\n   return (\n     <Wrapper>\n       <div className='nav-center'>\n         <button className='toggle-btn' onClick={toggleSidebar}>\n"
+                },
+                {
+                    "date": 1683465776963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,17 +23,13 @@\n             className='btn'\n             onClick={() => setShowLogout(!showLogout)}\n           >\n             <FaUserCircle />\n-            John\n+            {user?.name}\n             <FaCaretDown />\n           </button>\n           <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>\n-            <button\n-              type='button'\n-              className='dropdown-btn'\n-              onClick={() => console.log('logout user')}\n-            >\n+            <button type='button' className='dropdown-btn' onClick={logoutUser}>\n               logout\n             </button>\n           </div>\n         </div>\n"
+                }
+            ],
+            "date": 1683458111169,
+            "name": "Commit-0",
+            "content": "const Navbar = () => {\n  return <h1>Navbar</h1>;\n};\nexport default Navbar;\n"
+        }
+    ]
+}

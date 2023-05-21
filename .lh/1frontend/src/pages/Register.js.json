@@ -1,0 +1,30 @@
+{
+    "sourceFile": "1frontend/src/pages/Register.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1684115976969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684116058972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,14 +90,9 @@\n           <button type='button' onClick={toggleMember} className=' member-btn '>\n             {values.isMember ? 'Register' : 'Login'}\n           </button>\n         </p>\n-        <p>\n-          {values.isMember ? 'Not a member yet?' : 'Already a member?'}\n-          <button type='button' onClick={toggleMember} className=' member-btn '>\n-            {values.isMember ? 'Register' : 'Login'}\n-          </button>\n-        </p>\n+        \n       </form>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684116112048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,8 +90,14 @@\n           <button type='button' onClick={toggleMember} className=' member-btn '>\n             {values.isMember ? 'Register' : 'Login'}\n           </button>\n         </p>\n+        <p>\n+          {values.isMember ? 'Not a member yet?' : 'Already a member?'}\n+          <button type='button' onClick={toggleMember} className=' member-btn '>\n+            {values.isMember ? 'Register' : 'Login'}\n+          </button>\n+        </p>\n       </form>\n     </Wrapper>\n   );\n };\n"
+                },
+                {
+                    "date": 1684116236935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n             {values.isMember ? 'Register' : 'Login'}\n           </button>\n         </p>\n         <p>\n-          {values.isMember ? 'Not a member yet?' : 'Already a member?'}\n+          {values.isMember ? '' : 'Already a member?'}\n           <button type='button' onClick={toggleMember} className=' member-btn '>\n             {values.isMember ? 'Register' : 'Login'}\n           </button>\n         </p>\n"
+                }
+            ],
+            "date": 1684115976969,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from 'react';\nimport { Logo, FormRow, Alert } from '../components';\nimport Wrapper from '../assets/wrappers/RegisterPage';\nimport { useAppContext } from '../context/appContext';\nimport { useNavigate } from 'react-router-dom';\n\nconst initialState = {\n  name: '',\n  email: '',\n  password: '',\n  isMember: false\n};\nconst Register = () => {\n  const [values, setValues] = useState(initialState);\n\n  //global state and useNavigate\n  const navigate = useNavigate();\n\n  const { user, isLoading, showAlert, displayAlert, registerUser, loginUser } =\n    useAppContext();\n\n  const toggleMember = () => {\n    setValues({ ...values, isMember: !values.isMember });\n  };\n\n  const handleChange = (e) => {\n    setValues({ ...values, [e.target.name]: e.target.value });\n  };\n\n  const onSubmit = (e) => {\n    e.preventDefault();\n    const { name, email, password, isMember } = values;\n    if (!email || !password || (!isMember && !name)) {\n      displayAlert();\n      return;\n    }\n    const currentUser = { name, email, password };\n\n    if (isMember) {\n      loginUser(currentUser);\n    } else {\n      registerUser(currentUser);\n    }\n  };\n\n  useEffect(() => {\n    if (user) {\n      setTimeout(() => {\n        navigate('/');\n      }, 3000);\n    }\n  }, [user, navigate]);\n\n  return (\n    <Wrapper className='full-page'>\n      <form className='form' onSubmit={onSubmit}>\n        <Logo />\n        <h3>{values.isMember ? 'Login' : 'Register'}</h3>\n        {showAlert && <Alert />}\n        {/* name input */}\n        {!values.isMember && (\n          <FormRow\n            type='text'\n            name='name'\n            value={values.name}\n            handleChange={handleChange}\n          />\n        )}\n\n        {/* email input */}\n        <FormRow\n          type='email'\n          name='email'\n          value={values.email}\n          handleChange={handleChange}\n        />\n\n        {/* password input */}\n        <FormRow\n          type='password'\n          name='password'\n          value={values.password}\n          handleChange={handleChange}\n        />\n        <button type='submit' className='btn btn-block' disabled={isLoading}>\n          submit\n        </button>\n        <p>\n          {values.isMember ? 'Not a member yet?' : 'Already a member?'}\n          <button type='button' onClick={toggleMember} className=' member-btn '>\n            {values.isMember ? 'Register' : 'Login'}\n          </button>\n        </p>\n        <p>\n          {values.isMember ? 'Not a member yet?' : 'Already a member?'}\n          <button type='button' onClick={toggleMember} className=' member-btn '>\n            {values.isMember ? 'Register' : 'Login'}\n          </button>\n        </p>\n      </form>\n    </Wrapper>\n  );\n};\nexport default Register;\n"
+        }
+    ]
+}

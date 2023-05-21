@@ -1,0 +1,26 @@
+{
+    "sourceFile": "populate.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1684041718021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684041792647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     const jsonProducts = JSON.parse(\n       await readFile(new URL('./mock-data.json', import.meta.url))\n     );\n     await Job.create(jsonProducts);\n-    console.log('Success');\n+    console.log('Success!!!');\n     process.exit(0);\n   } catch (error) {\n     console.log(error);\n     process.exit(1);\n"
+                },
+                {
+                    "date": 1684042036425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,4 +20,5 @@\n     console.log(error);\n     process.exit(1);\n   }\n };\n+start();\n"
+                }
+            ],
+            "date": 1684041718021,
+            "name": "Commit-0",
+            "content": "import { readFile } from 'fs/promises';\n\nimport dotenv from 'dotenv';\ndotenv.config();\n\nimport connectDB from './db/connect.js';\nimport Job from './models/Job.js';\n\nconst start = async () => {\n  try {\n    await connectDB(process.env.MONGO_URL);\n    await Job.deleteMany();\n    const jsonProducts = JSON.parse(\n      await readFile(new URL('./mock-data.json', import.meta.url))\n    );\n    await Job.create(jsonProducts);\n    console.log('Success');\n    process.exit(0);\n  } catch (error) {\n    console.log(error);\n    process.exit(1);\n  }\n};\n"
+        }
+    ]
+}

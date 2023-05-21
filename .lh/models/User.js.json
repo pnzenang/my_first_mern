@@ -1,0 +1,30 @@
+{
+    "sourceFile": "models/User.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1683657760240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683684902637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n   }\n });\n \n UserSchema.pre('save', async function () {\n+  if (!this.isModified('password')) return;\n   const salt = await bcrypt.genSalt(10);\n   this.password = await bcrypt.hash(this.password, salt);\n });\n \n"
+                },
+                {
+                    "date": 1683880121813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,11 @@\n     trim: true,\n     maxlength: 20,\n     default: 'my city'\n   }\n-});\n+}\n+{timestamps:true}\n+);\n \n UserSchema.pre('save', async function () {\n   if (!this.isModified('password')) return;\n   const salt = await bcrypt.genSalt(10);\n"
+                },
+                {
+                    "date": 1683880127130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,45 +2,46 @@\n import validator from 'validator';\n import bcrypt from 'bcryptjs';\n import jwt from 'jsonwebtoken';\n \n-const UserSchema = new mongoose.Schema({\n-  name: {\n-    type: String,\n-    required: [true, 'Please provide name'],\n-    minlength: 3,\n-    maxlength: 20,\n-    trim: true\n-  },\n-  email: {\n-    type: String,\n-    required: [true, 'Please provide email'],\n-    validate: {\n-      validator: validator.isEmail,\n-      message: 'Please provide a valid email'\n+const UserSchema = new mongoose.Schema(\n+  {\n+    name: {\n+      type: String,\n+      required: [true, 'Please provide name'],\n+      minlength: 3,\n+      maxlength: 20,\n+      trim: true\n     },\n-    unique: true\n+    email: {\n+      type: String,\n+      required: [true, 'Please provide email'],\n+      validate: {\n+        validator: validator.isEmail,\n+        message: 'Please provide a valid email'\n+      },\n+      unique: true\n+    },\n+    password: {\n+      type: String,\n+      required: [true, 'Please provide password'],\n+      minlength: 6,\n+      select: false\n+    },\n+    lastName: {\n+      type: String,\n+      trim: true,\n+      maxlength: 20,\n+      default: 'lastName'\n+    },\n+    location: {\n+      type: String,\n+      trim: true,\n+      maxlength: 20,\n+      default: 'my city'\n+    }\n   },\n-  password: {\n-    type: String,\n-    required: [true, 'Please provide password'],\n-    minlength: 6,\n-    select: false\n-  },\n-  lastName: {\n-    type: String,\n-    trim: true,\n-    maxlength: 20,\n-    default: 'lastName'\n-  },\n-  location: {\n-    type: String,\n-    trim: true,\n-    maxlength: 20,\n-    default: 'my city'\n-  }\n-}\n-{timestamps:true}\n+  { timestamps: true }\n );\n \n UserSchema.pre('save', async function () {\n   if (!this.isModified('password')) return;\n"
+                }
+            ],
+            "date": 1683657760240,
+            "name": "Commit-0",
+            "content": "import mongoose from 'mongoose';\nimport validator from 'validator';\nimport bcrypt from 'bcryptjs';\nimport jwt from 'jsonwebtoken';\n\nconst UserSchema = new mongoose.Schema({\n  name: {\n    type: String,\n    required: [true, 'Please provide name'],\n    minlength: 3,\n    maxlength: 20,\n    trim: true\n  },\n  email: {\n    type: String,\n    required: [true, 'Please provide email'],\n    validate: {\n      validator: validator.isEmail,\n      message: 'Please provide a valid email'\n    },\n    unique: true\n  },\n  password: {\n    type: String,\n    required: [true, 'Please provide password'],\n    minlength: 6,\n    select: false\n  },\n  lastName: {\n    type: String,\n    trim: true,\n    maxlength: 20,\n    default: 'lastName'\n  },\n  location: {\n    type: String,\n    trim: true,\n    maxlength: 20,\n    default: 'my city'\n  }\n});\n\nUserSchema.pre('save', async function () {\n  const salt = await bcrypt.genSalt(10);\n  this.password = await bcrypt.hash(this.password, salt);\n});\n\nUserSchema.methods.createJWT = function () {\n  return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {\n    expiresIn: process.env.JWT_LIFETIME\n  });\n};\n\nUserSchema.methods.comparePassword = async function (candidatePassword) {\n  const isMatch = await bcrypt.compare(candidatePassword, this.password);\n  return isMatch;\n};\n\nexport default mongoose.model('User', UserSchema);\n"
+        }
+    ]
+}

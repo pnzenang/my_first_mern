@@ -1,0 +1,30 @@
+{
+    "sourceFile": "1frontend/src/pages/dashboard/Stats.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1683459746542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1684290127574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+import { useEffect } from \"react\";\n+import { useAppContext } from \"../../context/appContext\";\n+import { StatsContainer, Loading, ChartsContainer } from \"../../components\";\n+StatsContainer\n+useAppContext\n+\n+useEffect\n+\n const Stats = () => {\n   return <h1>Stats Page</h1>;\n };\n export default Stats;\n"
+                },
+                {
+                    "date": 1684290301108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { useEffect } from 'react';\n import { useAppContext } from '../../context/appContext';\n-import { StatsContainer, Loading, ChartsContainer } from '../../components';\n+import { StatsContainer, ChartsContainer } from '../../components';\n+     import Loading from '../../components/Loading'\n StatsContainer;\n useAppContext;\n \n useEffect;\n"
+                },
+                {
+                    "date": 1684290448210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { useEffect } from 'react';\n import { useAppContext } from '../../context/appContext';\n-import { StatsContainer, ChartsContainer } from '../../components';\n-import Loading from '../../components/Loading';\n+import { StatsContainer, Loading,  ChartsContainer } from '../../components';\n+\n StatsContainer;\n useAppContext;\n \n useEffect;\n"
+                }
+            ],
+            "date": 1683459746542,
+            "name": "Commit-0",
+            "content": "const Stats = () => {\n  return <h1>Stats Page</h1>;\n};\nexport default Stats;\n"
+        }
+    ]
+}
